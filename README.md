@@ -25,7 +25,6 @@ This repository serves as my personal learning hub where I:
 
 ### Prerequisites
 
-- Python 3.x
 - Jupyter Notebook or Google Colab
 - Required libraries (see individual notebooks for specific requirements)
 
