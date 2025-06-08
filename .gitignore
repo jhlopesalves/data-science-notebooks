@@ -155,3 +155,4 @@ $RECYCLE.BIN/
 # *.xlsx
 # *.xls
 # data/
+.blackboxrules
