@@ -1,4 +1,7 @@
 # DataCamp Course Materials & Practice Environment
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jhlopesalves/data-science-practice-notebook/HEAD)
+![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.11%20|%203.12-blue)
 
 A personal educational repository containing notebooks, datasets, exercises, and course materials from DataCamp, recreated for independent practice in Google Colab and other environments.
 
@@ -37,15 +40,14 @@ This repository serves as my personal learning hub where I:
 
 ## Repository Structure
 
-```
-├── course-name/
-│   ├── notebooks/
-│   ├── datasets/
-│   ├── exercises/
-│   └── notes/
-├── challenges/
-└── resources/
-```
+| **Theme**                       | **Description**                                                                                                                                       |
+|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `data_manipulation/`            | - Core `pandas` operations<br>- Advanced indexing & `.loc` / `.iloc` strategies<br>- Table joins & merges<br>- Principles of tidy data               |
+| `statistics/`                   | - Probability distributions & their properties<br>- Point & interval estimation<br>- Hypothesis testing workflows<br>- Bootstrap & resampling methods |
+| `machine_learning/`             | - Building `scikit-learn` pipelines<br>- Model evaluation (cross-validation, metrics)<br>- Feature engineering techniques                              |
+| `visualisation/`                | - Matplotlib (OO interface) best practices<br>- Elegant Seaborn plots<br>- Custom Matplotlib stylesheets<br>- Interactive Plotly examples              |
+| `resources/`                    | - Downloadable PDF cheatsheets<br>- Curated reading list & bibliography<br>- Links to tutorials & external tools                                       |
+
 
 ## Educational Use Disclaimer
 
