@@ -3,7 +3,7 @@
 ![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.11%20|%203.12-blue)
 
-A personal educational repository containing notebooks, datasets, exercises, and course materials from DataCamp, recreated for independent practice in Google Colab and other environments.
+A personal educational repository containing notebooks, datasets, exercises, and course materials from DataCamp, recreated for independent practice and review in Google Colab and other environments.
 
 **My DataCamp Profile**: [jhlopesalves](https://www.datacamp.com/portfolio/jhlopesalves)
 
