@@ -5,6 +5,7 @@ env/
 ENV/
 .venv/
 .env/
+.conda/
 
 # Python environment configuration
 pyvenv.cfg
