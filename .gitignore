@@ -127,6 +127,7 @@ cython_debug/
 # VS Code
 .vscode/
 *.code-workspace
+pyrightconfig.json
 
 # macOS
 .DS_Store
