@@ -10,7 +10,9 @@ ENV/
 # R files
 .Rprofile
 renv.lock
-renv 
+renv
+.lintr 
+.RData  
 
 # Python environment configuration
 pyvenv.cfg
