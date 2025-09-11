@@ -115,6 +115,7 @@ cython_debug/
 .RData
 .Rhistory
 .Rapp.history
+.lintr
 
 # Session Data files
 .RDataTmp
