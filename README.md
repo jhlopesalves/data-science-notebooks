@@ -104,8 +104,11 @@ Some content is adapted from courses I have taken; all additional notes, example
 
 ## About Me
 
+
 I am a teacher, programmer, and data science student with a focus on NLP, corpus linguistics and applied statistics.  
 This repository is both my personal learning archive and a public space to share my progress and results.
+
+
 **My DataCamp Profile**: [jhlopesalves](https://www.datacamp.com/portfolio/jhlopesalves)
 ---
 
