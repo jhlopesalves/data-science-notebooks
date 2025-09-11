@@ -1,4 +1,8 @@
-# Python virtual environment
+# =======================
+# Python
+# =======================
+
+# Python virtual environments
 datacamp/
 venv/
 env/
@@ -6,13 +10,6 @@ ENV/
 .venv/
 .env/
 .conda/
-
-# R files
-.Rprofile
-renv.lock
-renv
-.lintr 
-.RData  
 
 # Python environment configuration
 pyvenv.cfg
@@ -67,7 +64,8 @@ coverage.xml
 cover/
 
 # Jupyter Notebook
-.ipynb_checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
 
 # IPython
 profile_default/
@@ -95,25 +93,6 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
 # mypy
 .mypy_cache/
 .dmypy.json
@@ -128,18 +107,97 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# =======================
+# R
+# =======================
+
+# R workspace files
+.RData
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RDataTmp
+
+# User-specific files
+.Ruserdata
+
+# R Environment Variables
+.Renviron
+
+# R project files
+.Rproj.user/
+*.Rproj
+
+# R package development
+renv/
+renv.lock
+.Rprofile
+
+# pkgdown site
+docs/
+
+# translation temp files
+po/*~
+
+# =======================
+# Environment & Secrets
+# =======================
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =======================
+# IDEs & Editors
+# =======================
+
 # PyCharm
 .idea/
 
 # VS Code
 .vscode/
 *.code-workspace
-pyrightconfig.json
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =======================
+# OS Generated Files
+# =======================
 
 # macOS
 .DS_Store
 .AppleDouble
 .LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
 # Windows
 Thumbs.db
@@ -153,15 +211,40 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 
-# Temporary files
+# Linux
+*~
+
+# =======================
+# Temporary & Log Files
+# =======================
+
 *.tmp
 *.temp
 *.log
+*.pid
+*.seed
+*.pid.lock
 
-# Data files (uncomment if you don't want to track data files)
+# =======================
+# Project Specific
+# =======================
+
+# Configuration files (uncomment if you want to ignore these)
+pyrightconfig.json
+
+# Nested git repositories (these should not be tracked)
+temp_repo/
+**/temp_repo/
+
+# Custom rules
+.blackboxrules
+
+# =======================
+# Data Files (COMMENTED OUT AS REQUESTED)
+# =======================
+# Note: Data files in 'data/' folders are intentionally tracked
 # *.csv
 # *.json
 # *.xlsx
 # *.xls
 # data/
-.blackboxrules
