@@ -1,0 +1,81 @@
+weeks:
+- number: 1
+  title: Environment, Reproducibility, and DataFrames
+- number: 2
+  title: Data Cleaning, Missingness, and Robust Descriptives
+- number: 3
+  title: Pipelines, ColumnTransformer, Honest CV
+- number: 4
+  title: Inference, Resampling, and A/B Testing
+- number: 5
+  title: Least Squares, Regularisation Paths, and Baselines
+- number: 6
+  title: 'Engineering Habits: Testing, Docs, and Experiment Tracking'
+- number: 7
+  title: Buffer & Utilities
+- number: 8
+  title: Data Validation and Monitoring on Notebooks
+- number: 9
+  title: 'Classification Essentials: Logistic Regression, Imbalance, Calibration'
+- number: 10
+  title: Regularised GLMs for Non-Gaussian Targets
+- number: 11
+  title: 'SVMs and k-NN: Margins vs Neighbourhoods'
+- number: 12
+  title: Trees, Bagging and Forests
+- number: 13
+  title: Boosting (HGB, LightGBM, XGBoost) and Inspection
+- number: 14
+  title: Dimensionality Reduction and Clustering as Tools
+- number: 15
+  title: Model Selection Without Leakage
+- number: 16
+  title: Phase Project — Defensible Tabular Model
+- number: 17
+  title: Inference Deep-Dive with statsmodels
+- number: 18
+  title: ARIMA/SARIMAX and Stationarity
+- number: 19
+  title: 'Modern Time Series: Prophet, sktime, darts'
+- number: 20
+  title: Treatment Effects with DoWhy/EconML
+- number: 21
+  title: Fairness, Explainability, and Model Risk
+- number: 22
+  title: Out-of-Core Analytics and Columnar Workflows
+- number: 23
+  title: Analytical SQL + ORM + Feature Delivery
+- number: 24
+  title: From Notebooks to Flows
+- number: 25
+  title: The Gradient Engine
+- number: 26
+  title: Convolutions, Augmentations, and Mixed Precision
+- number: 27
+  title: Make It Reliable
+- number: 28
+  title: TF Mirror and Production-Friendly Pipelines
+- number: 29
+  title: Transfer and Text in Keras
+- number: 30
+  title: PEFT/LoRA Fine-Tuning for Classification & QA
+- number: 31
+  title: Reproducibility, Checkpointing, Profiling, and Experiment Tracking
+- number: 32
+  title: 'Phase-D Project: Multimodal or Text-Only Production Model'
+- number: 33
+  title: 'NLP Foundations: Tokenisation, Tagging, Parsing'
+- number: 34
+  title: 'Classical NLP: TF-IDF, Linear Models, and CRFs for NER'
+- number: 35
+  title: 'Distributional Semantics: word2vec, fastText, and Sentence Embeddings'
+- number: 36
+  title: Transformer Fine-Tuning (GLUE/SQuAD) with PEFT and Evaluation Best Practice
+- number: 37
+  title: 'RAG Fundamentals: Ingestion, Indexing, Retrieval, and Evaluation'
+- number: 38
+  title: 'Serving LLMs Efficiently: vLLM, TGI, Quantisation, and FastAPI'
+- number: 39
+  title: 'Multilingual & Domain Adaptation: Corpora, Tokenisation, and X-Transfer'
+- number: 40
+  title: 'Phase-E Project: RAG Assistant or Multilingual NER at Production Quality'

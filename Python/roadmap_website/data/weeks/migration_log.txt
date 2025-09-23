@@ -1,0 +1,3 @@
+weeks.yaml source: Python\roadmap\data\weeks.yaml
+Total weeks processed: 40
+Files generated in Python\roadmap\data\weeks

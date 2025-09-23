@@ -1,0 +1,2080 @@
+'1':
+  bibliography: '- *Python Data Science Handbook (2e, online)* — Jake VanderPlas —
+    (2022) — <https://jakevdp.github.io/PythonDataScienceHandbook/>
+
+    - *Fluent Python (2e)* — Luciano Ramalho — (2022) — <https://www.oreilly.com/library/view/fluent-python-2nd/9781492056355/>
+
+    - *MIT 18.06 Linear Algebra (selected lectures)* — Gilbert Strang — (2010) — <https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/>
+
+    - *An Introduction to Statistical Learning with Applications in Python* — James,
+    Witten, Hastie, Tibshirani — (2023) — <https://www.statlearning.com/>'
+  code_focus: '- Set up Python 3.11+, pyenv (optional), and VS Code; configure virtual
+    environments (venv) and a project scaffold with pyproject.toml (build backend:
+    setuptools).
+
+    - Git discipline: initialise repo, feature branches, atomic commits, conventional
+    commit messages, protected main branch.
+
+    - Jupyter + Colab workflows; notebook hygiene: parameter cells, deterministic
+    seeds, %load_ext autoreload.
+
+    - pandas vs Polars: ingestion (CSV/Parquet), schema inspection, type casting,
+    datetime parsing, joins/merges, groupby-agg, window ops, reshaping (melt/pivot).
+
+    - NumPy essentials: ndarray creation, slicing, broadcasting, vectorised ops, linear
+    algebra primitives (dot, svd, eigh).
+
+    - Basic validation: column ranges and dtypes with Pandera; quick assertions in
+    tests.
+
+    - Project plumbing: formatter (black), linter (ruff), import sorter (isort), pre-commit
+    hooks, Makefile or tasks.json.
+
+    - EDA scaffolding: profile report template; quick-check visualisations (histogram,
+    ECDF, violin, box, heatmap) using seaborn and Matplotlib OO API.'
+  docs: '- [NumPy](https://numpy.org/doc/)
+
+    - [pandas](https://pandas.pydata.org/docs/)
+
+    - [Polars](https://docs.pola.rs/)
+
+    - [pytest (parametrisation)](https://docs.pytest.org/en/stable/how-to/parametrize.html)
+
+    - [Matplotlib gallery (OO)](https://matplotlib.org/stable/gallery/index.html)
+
+    - [seaborn tutorial](https://seaborn.pydata.org/tutorial.html)'
+  math_stats: '- Sets, random variables, expectation/variance; law of large numbers
+    (intuition) to justify train/validation splits.
+
+    - Vector/matrix notation; shapes; norms (L1, L2, Linf) and what they imply computationally.
+
+    - Sampling vs population; measurement error; missingness mechanisms (MCAR/MAR/MNAR)
+    and practical implications for imputation.'
+  number: 1
+  phase: Foundations
+  project:
+    dataset: 'Kaggle Titanic: Machine Learning from Disaster'
+    metrics: '- Zero notebook state errors on rerun
+
+      - Passing Pandera checks
+
+      - Lint/format clean
+
+      - Readable README with environment + run steps'
+    title: Reproducible EDA Starter
+    description: 'Build a clean EDA package: one notebook and one Python module. Ingest
+      Titanic CSV, coerce schema, create summary tables and 6–8 core plots (hist/ECDF
+      of age/fare; stacked bars for Pclass×Survived; heatmap of correlations; missingness
+      heatmap). Add Pandera checks for key columns. Save figures to ./reports/figures.
+      Commit with pre-commit hooks.'
+    dataset_links: '- <https://www.kaggle.com/c/titanic>'
+    nuances: '- Explain any imputation choices in README
+
+      - Seed all stochastic steps
+
+      - Compare pandas vs Polars runtimes on join/groupby (optional)'
+  summary: 'You establish the working habits of a professional: version control, deterministic
+    environments, and fast, idiomatic DataFrame work. The goal is not pretty plots
+    per se but a repeatable EDA skeleton you will reuse all year. You also begin a
+    light-touch mathematical vocabulary - random variables, expectation, norms - so later
+    regularisers and losses are less mysterious.'
+  title: Environment, Reproducibility, and DataFrames
+  bundles:
+  - bundle_foundations
+  - bundle_sklearn_core
+'10':
+  bibliography: '- Hastie, Tibshirani & Friedman — The Elements of Statistical Learning,
+    Ch. 4 & 6.
+
+    - Dobson & Barnett — An Introduction to Generalized Linear Models (CRC).
+
+    - Kuhn & Silge — Tidy Modeling with R (GLM chapters for conceptual clarity).
+
+    - Frees — Regression Modeling with Actuarial and Financial Applications (GLM/Tweedie).'
+  code_focus: '- Implement Poisson, Gamma and Tweedie regression in scikit-learn:
+    PoissonRegressor, GammaRegressor, TweedieRegressor with power in {1 (Poisson),
+    1<p<2 (Tweedie compound Poisson), 2 (Gamma)} and alpha (L2) regularisation; compare
+    with statsmodels.GLM for full inference (SEs, Wald tests).
+
+    - Engineering exposure offsets (log link), canonical links, and variance functions;
+    handle zero-inflation via two-part frequency–severity modelling (count model +
+    positive-only severity model).
+
+    - Robust evaluation beyond R^2/MAE: mean deviance, Poisson/Gamma deviance, Tweedie
+    deviance; calibration plots for count and claim-size models.
+
+    - Pipeline good practice: ColumnTransformer (one-hot for categoricals; target/Box-Cox
+    where appropriate), outlier flooring/capping for heavy-tailed severity, and grouped
+    CV for temporal leakage control.
+
+    - Diagnostics: residuals on the response and Pearson scales; influence of high-leverage
+    points; compare scikit-learn (prediction-centric) vs statsmodels (inference-centric).'
+  docs: '- https://scikit-learn.org/stable/modules/linear_model.html#generalized-linear-regression
+
+    - https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PoissonRegressor.html
+
+    - https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.TweedieRegressor.html
+
+    - https://www.statsmodels.org/dev/glm.html
+
+    - https://www.statsmodels.org/stable/generated/statsmodels.genmod.generalized_linear_model.GLM.html'
+  math_stats: '- Exponential family; canonical links; mean-variance relationship.
+
+    - Convexity of GLM negative log-likelihood; L2 regularisation and bias–variance
+    trade-off.
+
+    - Deviance as twice the log-likelihood ratio and its interpretation.
+
+    - Two-part models: E[Y]=E[N]*E[severity | N>0]; Tweedie as frequency–severity
+    compound.'
+  number: 10
+  phase: Core ML
+  project:
+    title: Frequency–Severity Insurance Modelling
+    dataset: Insurance claims (frequency and severity) + Bike sharing counts (as a
+      second domain).
+    description: 'Build a two-part model: (1) frequency via PoissonRegressor with
+      an exposure term; (2) severity via GammaRegressor or TweedieRegressor (p≈1.5–1.9)
+      on strictly positive claims. Compare to a single Tweedie pure-premium model.
+      Produce deviance-based model selection, calibration plots, and an interpretability
+      report explaining which risk factors affect frequency versus severity.'
+    dataset_links: '- <https://www.kaggle.com/competitions/allstate-claims-severity>
+
+      - <https://scikit-learn.org/stable/auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html>
+
+      - <https://www.kaggle.com/c/bike-sharing-demand>'
+    metrics: '- Frequency: Poisson deviance on a temporal hold-out.
+
+      - Severity: Gamma/Tweedie deviance and Pinball loss at τ∈{0.5,0.9}.
+
+      - Pure premium: Tweedie deviance; practical lift over baseline rate card.'
+    nuances: '- Stability of estimates with high-cardinality categoricals; target
+      encoding only within CV folds.
+
+      - Heavy-tail handling (Winsorising; log-scale modelling) and implications for
+      calibration.'
+  summary: 'You move from Gaussian regression to the GLM toolkit that dominates operational
+    ML on counts and costs. The week forces careful thinking about distributions,
+    link functions and evaluation: MSE is the wrong ruler for counts and claims. By
+    building the classical frequency–severity pipeline and comparing it to a Tweedie
+    pure-premium model, you will learn when decomposition aids interpretability and
+    when Tweedie’s parsimony wins. You will also practise deviance-based selection
+    and produce business-grade calibration analyses.'
+  title: Regularised GLMs for Non-Gaussian Targets
+  bundles:
+  - bundle_glm
+'11':
+  bibliography: '- Vapnik — Statistical Learning Theory (selected sections on margins).
+
+    - Müller & Guido — Introduction to Machine Learning with Python (SVM & k-NN chapters).
+
+    - Niculescu-Mizil & Caruana (2005) — Predicting Good Probabilities with Supervised
+    Learning (calibration).'
+  code_focus: '- SVC with RBF and linear kernels; tuning C and gamma via log-spaced
+    grids; class_weight for imbalance; probability calibration (Platt sigmoid) for
+    decision-thresholding.
+
+    - LinearSVC vs SVC trade-offs on high-dimensional sparse text; scaling with StandardScaler
+    and pipeline safety.
+
+    - k-NN for classification and regression; metric choice (Minkowski, cosine for
+    text embeddings), k selection via CV, and curse-of-dimensionality mitigation by
+    PCA/TruncatedSVD.
+
+    - Reliability curves and Brier score to compare calibrated SVM vs k-NN; per-class
+    ROC and PR curves for imbalanced data.'
+  docs: '- https://scikit-learn.org/stable/modules/svm.html
+
+    - https://scikit-learn.org/stable/modules/neighbors.html
+
+    - https://scikit-learn.org/stable/modules/calibration.html'
+  math_stats: '- Maximum-margin classifiers; primal/dual, role of C and gamma in margin
+    width and effective radius.
+
+    - Cover–Hart intuition for k-NN; bias–variance as k varies; metric geometry effects.
+
+    - Calibration theory: proper scoring rules (log loss, Brier).'
+  number: 11
+  phase: Core ML
+  project:
+    title: Text Topic SVM vs k-NN
+    dataset: 20 Newsgroups
+    description: Vectorise text via TfidfVectorizer, compare LinearSVC (one-vs-rest)
+      to k-NN (cosine). Add probability calibration and report accuracy, macro-F1,
+      macro-AUC and calibration curves. Explore how truncation with TruncatedSVD (LSA)
+      affects both models.
+    dataset_links: '- <https://scikit-learn.org/stable/datasets/real_world.html#the-20-newsgroups-text-dataset>'
+    metrics: '- Macro-F1, macro ROC-AUC, Brier score; reliability diagrams.'
+    nuances: '- Sparse vs dense representations; memory and fit time profiling.
+
+      - Effect of stop-words and n-grams on margin and nearest-neighbour geometry.'
+  summary: This week juxtaposes global margin decision rules with intensely local
+    rules. You will get a working intuition for C and gamma, learn when a linear SVM
+    on sparse TF-IDF already saturates performance, and see how calibration changes
+    downstream decision quality. The k-NN experiments force you to confront metrics,
+    dimensionality and compute constraints.
+  title: 'SVMs and k-NN: Margins vs Neighbourhoods'
+  bundles:
+  - bundle_svm_knn
+'12':
+  bibliography: '- Breiman — Random Forests (2001).
+
+    - ESL — Ch. 9 (Additive Models, Trees, and Related Methods).
+
+    - Molnar — Interpretable Machine Learning (tree interpretation and PDP/ICE).'
+  code_focus: '- DecisionTreeClassifier/Regressor: cost-complexity pruning (ccp_alpha),
+    max_depth/min_samples_leaf tuning, class_weight handling, monotone constraints
+    (conceptual).
+
+    - BaggingClassifier/Regressor; RandomForest* and ExtraTrees*; OOB estimates; permutation_importance
+    for robust importance vs impurity bias.
+
+    - Model inspection: PartialDependenceDisplay (PDP/ICE) on tabular features; global
+    vs local importance; pitfalls with correlated features.'
+  docs: '- https://scikit-learn.org/stable/modules/tree.html
+
+    - https://scikit-learn.org/stable/modules/ensemble.html
+
+    - https://scikit-learn.org/stable/modules/permutation_importance.html
+
+    - https://scikit-learn.org/stable/modules/partial_dependence.html'
+  math_stats: '- Greedy recursive partitioning; impurity (Gini/entropy/MSE) and variance
+    reduction.
+
+    - Bagging variance reduction and bias trade-off; why ExtraTrees increases randomness.
+
+    - Why impurity-based importance is biased; permutation importance as a model-agnostic
+    alternative.'
+  number: 12
+  phase: Core ML
+  project:
+    title: Tabular Risk Modelling with Forests
+    dataset: Adult Census Income; Titanic (for pedagogy).
+    description: Train pruned trees, bagging and random forests. Use OOB error where
+      appropriate, permutation importance, and PDP/ICE to explain two most influential
+      features. Compare against a regularised logistic baseline.
+    dataset_links: '- <https://archive.ics.uci.edu/dataset/2/adult>
+
+      - <https://www.kaggle.com/c/titanic>'
+    metrics: '- ROC-AUC (macro & weighted), expected calibration error (ECE), OOB
+      accuracy where applicable.'
+    nuances: '- Leakage-safe preprocessing inside Pipeline/ColumnTransformer.
+
+      - Handling high-cardinality categoricals: hashing vs target encoding (fold-safe).'
+  summary: You learn to make trees honest. Rather than worship variable importance,
+    you will quantify it with permutation tests and confront interpretation pitfalls
+    in correlated feature sets. Forests become your go-to strong baseline for mixed-type
+    tabular data.
+  title: Trees, Bagging and Forests
+  bundles:
+  - bundle_trees_forests
+'13':
+  bibliography: '- ESL — Ch. 10 (Boosting).
+
+    - Chen & Guestrin — XGBoost: A Scalable Tree Boosting System (KDD 2016).
+
+    - Lundberg & Lee — A Unified Approach to Interpreting Model Predictions (NeurIPS
+    2017).'
+  code_focus: '- HistGradientBoostingClassifier/Regressor with categorical handling
+    and early_stopping; compare to sklearn GradientBoosting for understanding.
+
+    - LightGBM (Python API): histogram-based splits, num_leaves/max_depth, min_data_in_leaf,
+    feature_fraction, learning_rate, early stopping; monotonic constraints for domain-safe
+    monotone effects.
+
+    - XGBoost as an alternative; GPU awareness; sparse awareness.
+
+    - Inspection toolbox: SHAP (TreeExplainer) for global and local explanations;
+    partial dependence/ICE and interaction plots; permutation importance for stability
+    checks.'
+  docs: '- https://scikit-learn.org/stable/modules/ensemble.html#histogram-based-gradient-boosting
+
+    - https://lightgbm.readthedocs.io/
+
+    - https://xgboost.readthedocs.io/
+
+    - https://scikit-learn.org/stable/modules/partial_dependence.html
+
+    - https://shap.readthedocs.io/en/latest/'
+  math_stats: '- Boosting as gradient descent in function space; shrinkage and regularisation.
+
+    - Additive trees and bias–variance behaviour; when monotone constraints trade
+    variance for validity.
+
+    - Shapley values: additivity, local accuracy; caveats in causal interpretation.'
+  number: 13
+  phase: Core ML
+  project:
+    title: Boosted Baselines for California Housing
+    dataset: 'California Housing; optional: Home Credit Default Risk (Kaggle) for
+      classification.'
+    description: Tune HistGradientBoosting and LightGBM (with early stopping) on California
+      Housing; build a monotone-constrained variant; produce SHAP summary and PDPs.
+      For the optional classification dataset, replicate the workflow with class weighting
+      and calibration.
+    dataset_links: '- <https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html>
+
+      - <https://www.kaggle.com/c/home-credit-default-risk>'
+    metrics: '- Regression: RMSE and relative RMSE vs linear baseline, SHAP stability
+      across folds.
+
+      - Classification (optional): ROC-AUC, PR-AUC, ECE.'
+    nuances: '- Explain why histogram binning changes split behaviour and explains
+      speed.
+
+      - Show when monotone constraints align with domain knowledge (e.g., income ↑
+      → price ↑).'
+  summary: You adopt the modern workhorse for tabular ML. The week balances raw predictive
+    performance with transparent, reproducible explanation. You will be able to defend
+    boosted models with principled plots and stability checks rather than hand-waving.
+  title: Boosting (HGB, LightGBM, XGBoost) and Inspection
+  bundles:
+  - bundle_boosting
+'14':
+  bibliography: '- Murphy — Probabilistic Machine Learning (Ch. on Latent Variable
+    Models).
+
+    - Aggarwal & Reddy — Data Clustering (Springer).
+
+    - Bishop — Pattern Recognition and Machine Learning (mixtures & dimensionality).'
+  code_focus: '- PCA/IncrementalPCA and TruncatedSVD (for sparse TF-IDF); compare
+    explained variance, reconstruction error, and downstream classifier performance.
+
+    - NMF (Euclidean vs Kullback–Leibler) for parts-based topic-like factors on text.
+
+    - Clustering: KMeans/MiniBatchKMeans; DBSCAN (eps, min_samples); hierarchical
+    Agglomerative (linkage); silhouette, Calinski–Harabasz, Davies–Bouldin indices.
+
+    - Visualisation: t-SNE on low-dimensional embeddings; articulate perplexity/learning
+    rate effects; warn against using t-SNE distances quantitatively.'
+  docs: '- https://scikit-learn.org/stable/modules/decomposition.html
+
+    - https://scikit-learn.org/stable/modules/clustering.html
+
+    - https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html'
+  math_stats: '- SVD, eigen-decomposition; low-rank approximation and Eckart–Young–Mirsky
+    theorem (intuition).
+
+    - Matrix factorisation objectives (PCA vs NMF).
+
+    - Density vs centroid notions of cluster; why internal indices are imperfect.'
+  number: 14
+  phase: Unsupervised & Feature Learning
+  project:
+    title: Text Topics and Customer Segments
+    dataset: 20 Newsgroups (topics) + Mall Customers (toy segmentation).
+    description: Build TF-IDF → TruncatedSVD (LSA) → KMeans for topic discovery and
+      evaluation via NMI with labels (as a sanity check). For Mall Customers, compare
+      KMeans with DBSCAN and discuss cluster validity indices and business interpretability.
+    dataset_links: '- <https://scikit-learn.org/stable/datasets/real_world.html#the-20-newsgroups-text-dataset>
+
+      - <https://www.kaggle.com/datasets/shwetabh123/mall-customers>'
+    metrics: '- NMI/ARI for labelled text; silhouette/CH/DB for Mall Customers; downstream
+      classifier F1 after dimensionality reduction.'
+    nuances: '- Hyperparameter sensitivity of t-SNE; stability across random seeds.
+
+      - When to prefer NMF over LSA for interpretability.'
+  summary: You transform unsupervised learning from a novelty into a pipeline tool.
+    The point is not to ‘discover truth’ but to engineer useful representations and
+    segments that downstream models and stakeholders can use.
+  title: Dimensionality Reduction and Clustering as Tools
+  bundles:
+  - bundle_unsupervised_repr
+'15':
+  bibliography: '- Kohavi (1995) — A study of cross-validation and bootstrap for accuracy
+    estimation.
+
+    - Cawley & Talbot (2010) — On over-fitting in model selection and performance
+    evaluation.'
+  code_focus: '- GridSearchCV, RandomizedSearchCV, HalvingGridSearchCV; nested CV
+    for unbiased model assessment.
+
+    - StratifiedKFold/GroupKFold/TimeSeriesSplit; target leakage audits in Pipelines;
+    scorer selection (ROC-AUC vs PR-AUC for imbalance).
+
+    - Fairness as part of selection: add calibration and subgroup metrics when choosing
+    models; report variance across folds.'
+  docs: '- https://scikit-learn.org/stable/modules/grid_search.html
+
+    - https://scikit-learn.org/stable/modules/cross_validation.html
+
+    - https://scikit-learn.org/stable/modules/compose.html#pipeline'
+  math_stats: '- Bias of reusing validation; why nested CV approximates generalisation.
+
+    - Multiple comparisons and optimistic bias; variance of CV estimates and CIs.
+
+    - Proper vs improper scoring rules.'
+  number: 15
+  phase: Core ML
+  project:
+    title: Honest Model Bake-off
+    dataset: Adult Income (again) or Credit Card Default (UCI).
+    description: Compare logistic + regularisation, RandomForest and HistGB with nested
+      CV; incorporate calibration and subgroup metrics (e.g., by sex and race where
+      available). Deliver a short model-selection report with justification, not just
+      scores.
+    dataset_links: '- <https://archive.ics.uci.edu/dataset/2/adult>
+
+      - <https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients>'
+    metrics: '- Outer-fold ROC-AUC, PR-AUC, ECE; fairness deltas (e.g., demographic
+      parity difference).'
+    nuances: '- All preprocessing inside the Pipeline; split by groups if repeated
+      IDs exist.
+
+      - Report score distributions, not only means.'
+  summary: You learn to avoid the gravest sin in ML—leakage—and to produce trustworthy
+    estimates. The outcome is a ‘bake-off’ template you will reuse for years.
+  title: Model Selection Without Leakage
+  bundles:
+  - bundle_model_selection
+'16':
+  bibliography: '- Mitchell et al. — Model Cards for Model Reporting (FAT* 2019).
+
+    - Molnar — Interpretable ML (model reporting chapter).'
+  code_focus: '- End-to-end Pipeline with robust preprocessing, nested CV, calibration
+    and interpretability (permutation importance, PDP/ICE, SHAP for boosted trees).
+
+    - Documentation discipline: README with data cards and model cards; MLflow tracking
+    for experiments.'
+  docs: '- https://mlflow.org/docs/latest/index.html
+
+    - https://scikit-learn.org/stable/modules/calibration.html
+
+    - https://scikit-learn.org/stable/modules/permutation_importance.html
+
+    - https://shap.readthedocs.io/en/latest/'
+  math_stats: '- Consolidation of bias–variance, regularisation, deviance and proper
+    scoring.
+
+    - Uncertainty communication: confidence intervals for CV differences via bootstrap.'
+  number: 16
+  phase: Core ML
+  project:
+    title: Defensible Income or Credit Risk Model
+    dataset: Adult or Home Credit.
+    description: Ship a repo with MLflow runs, a final calibrated classifier, interpretability
+      artefacts (SHAP summary, PDPs), and a model card capturing intended use, limits
+      and fairness considerations.
+    dataset_links: '- <https://archive.ics.uci.edu/dataset/2/adult>
+
+      - <https://www.kaggle.com/c/home-credit-default-risk>'
+    metrics: '- As Week 15; plus business-aligned threshold metrics (precision at
+      k, cost curve).'
+    nuances: '- Reproducibility: seeds, pinned library versions, deterministic data
+      splits.
+
+      - Ethical boundaries: make explicit what the model must not be used for.'
+  summary: You compress four weeks of learning into one professional-grade artefact.
+    By the end, you can defend modelling choices to sceptical reviewers and non-technical
+    stakeholders.
+  title: Phase Project — Defensible Tabular Model
+  bundles:
+  - bundle_fairness_calibration
+  - bundle_model_selection
+'17':
+  bibliography: '- Wooldridge — Introductory Econometrics (robust SEs, diagnostics).
+
+    - Greene — Econometric Analysis (likelihood theory).
+
+    - Gelman et al. — Regression and Other Stories (diagnostics in practice).'
+  code_focus: '- OLS/GLM in statsmodels for coefficient inference: robust (HC0–HC3)
+    standard errors; hypothesis testing with t/Wald; confidence and prediction intervals.
+
+    - Model diagnostics: residual plots, QQ plots, heteroskedasticity tests (Breusch–Pagan,
+    White), multicollinearity checks (VIF), outlier influence (Cook’s distance).
+
+    - Information criteria (AIC/BIC) and likelihood-based model comparison; nested
+    vs non-nested comparisons.'
+  docs: '- https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html
+
+    - https://www.statsmodels.org/dev/glm.html
+
+    - https://www.statsmodels.org/stable/examples/notebooks/generated/ols.html'
+  math_stats: '- Likelihood, score, Fisher information; asymptotic normality of MLE.
+
+    - Robust sandwich estimators; when inference survives model misspecification.
+
+    - Model selection by ICs; limits of hypothesis testing in observational data.'
+  number: 17
+  phase: Statistical Modelling
+  project:
+    title: Explainable Linear Model with Proper Inference
+    dataset: California Housing (regression) and/or Wage data (any public wage/labour
+      dataset).
+    description: Fit an OLS model with a principled feature set; produce robust SEs,
+      diagnostic plots, and a short narrative explaining coefficient meaning, uncertainty
+      and any specification changes motivated by diagnostics.
+    dataset_links: '- <https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html>'
+    metrics: '- Inference quality: specification tests passed, stable coefficients
+      across perturbations.'
+    nuances: '- Separate predictive goals from inferential goals; be explicit which
+      you pursue.
+
+      - Use cross-validation only for predictive checks; inference uses the full model
+      with diagnostics.'
+  summary: You step back from predictive accuracy and learn to make defensible statements
+    about effects and uncertainty. This equips you to speak with analysts, economists
+    and scientists in their dialect.
+  title: Inference Deep-Dive with statsmodels
+  bundles:
+  - bundle_stats_inference
+'18':
+  bibliography: '- Hyndman & Athanasopoulos — Forecasting: Principles and Practice
+    (fpp3).
+
+    - Box, Jenkins, Reinsel & Ljung — Time Series Analysis (ARIMA bible).'
+  code_focus: '- Seasonal decomposition; stationarity checks (ADF); ARIMA/SARIMAX
+    identification with ACF/PACF heuristics.
+
+    - External regressors (weather/holidays), differencing and seasonal differencing;
+    rolling-origin evaluation; confidence vs prediction intervals.
+
+    - Baseline comparisons: naive, seasonal naive, ETS (if available) vs ARIMA; holiday
+    effects via regressors.'
+  docs: '- https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html
+
+    - https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html'
+  math_stats: '- AR, MA, ARMA/ARIMA state-space view; invertibility and stationarity
+    constraints.
+
+    - Forecast error variance; why backtesting must respect temporal order.
+
+    - Information criteria for order selection.'
+  number: 18
+  phase: Time Series
+  project:
+    title: Energy or Traffic Forecaster
+    dataset: PJM Hourly Energy Consumption or Metro Interstate Traffic Volume.
+    description: Build SARIMAX with weather/holiday regressors; produce rolling-origin
+      forecasts and compare to naive/seasonal naive. Discuss residual autocorrelation
+      and refit strategy.
+    dataset_links: '- <https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption>
+
+      - <https://www.kaggle.com/datasets/rgupta12/metro-interstate-traffic-volume>'
+    metrics: '- sMAPE, MASE and RMSE; coverage of 80/95% forecast intervals.'
+    nuances: '- Data gaps, timezone issues and daylight-saving transitions.
+
+      - Non-stationarity vs structural breaks; when differencing harms interpretability.'
+  summary: You learn principled classical forecasting, the baseline that modern methods
+    must beat. You will never again backtest with shuffled folds.
+  title: ARIMA/SARIMAX and Stationarity
+  bundles:
+  - bundle_statsmodels_ts
+  - bundle_fpp3
+'19':
+  bibliography: '- Hyndman & Athanasopoulos — fpp3 (modern methods and evaluation).
+
+    - Taylor & Letham — Forecasting at Scale (Prophet paper).'
+  code_focus: '- Prophet for trend/seasonality/holiday with automatic changepoints;
+    parameter sensitivity and diagnostics.
+
+    - sktime pipelines for feature-based forecasting (lagged features + tree ensembles)
+    and model comparison.
+
+    - darts for quick prototypes (regressors, backtesting utilities); compare to SARIMAX
+    on the same rolling windows.'
+  docs: '- https://facebook.github.io/prophet/
+
+    - https://www.sktime.net/en/stable/
+
+    - https://unit8co.github.io/darts/'
+  math_stats: '- Additive seasonality and piecewise linear trends; regularisation
+    of changepoints.
+
+    - Why feature-based tree models can outperform ARIMA on complex exogenous signals.
+
+    - Evaluation with expanding vs sliding windows; leakage-free lag construction.'
+  number: 19
+  phase: Time Series
+  project:
+    title: 'Forecasting Bake-off: Classical vs Modern'
+    dataset: UCI Electricity Load Diagrams 2011–2014 (or PJM hourly).
+    description: Implement SARIMAX vs Prophet vs a sktime feature-based regressor
+      (e.g., HGB with lagged features). Use identical rolling-origin evaluation; visualise
+      error profiles around holidays and regime shifts.
+    dataset_links: '- <https://archive.ics.uci.edu/ml/datasets/electricityloaddiagrams20112014>
+
+      - <https://www.kaggle.com/datasets/robikscube/hourly-energy-consumption>'
+    metrics: '- MASE/sMAPE on multiple horizons; interval coverage.
+
+      - Operational metrics: training/forecast latency.'
+    nuances: '- Changepoint prior scale tuning in Prophet; avoid overfitting trends.
+
+      - Feature leakage when creating calendar/weather features.'
+  summary: You extend beyond ARIMA to the pragmatic tools used in industry for irregular,
+    holiday-driven signals. The emphasis is consistency of evaluation and engineering-grade
+    feature handling.
+  title: 'Modern Time Series: Prophet, sktime, darts'
+  bundles:
+  - bundle_prophet
+  - bundle_sktime_darts
+'2':
+  bibliography: '- *All of Statistics* — Larry Wasserman — (2004) — <https://www.stat.cmu.edu/~larry/all-of-statistics/>
+
+    - *ISLR (Python)* — James et al. — (2023) — <https://www.statlearning.com/>
+
+    - *Harvard Stat 110 (selected: hypothesis testing, CLT)* — Joe Blitzstein — (2016)
+    — <https://projects.iq.harvard.edu/stat110/home>'
+  code_focus: '- Imputation: SimpleImputer, KNNImputer; categorical encoding strategies;
+    ordinal vs one-hot; date feature extraction.
+
+    - Outliers and influence: robust scalers (quantile, robust), Windsorising; compare
+    mean/median-trimmed.
+
+    - Non-parametric summaries with Pingouin (e.g., robust correlation) and SciPy
+    hypothesis tests.
+
+    - Plot repertoire: distribution diagnostics (QQ plots), pairplots with kernel
+    density, violin/box with swarm overlay; bivariate regression plots with CIs.'
+  docs: '- [SciPy Stats](https://docs.scipy.org/doc/scipy/reference/stats.html)
+
+    - [statsmodels user guide](https://www.statsmodels.org/stable/user-guide.html)
+
+    - [Pingouin docs](https://pingouin-stats.org/)
+
+    - [seaborn tutorial](https://seaborn.pydata.org/tutorial.html)'
+  math_stats: '- Quantiles, order statistics, IQR; robust vs efficient estimators.
+
+    - Hypothesis testing grammar: null, alternative, test statistic, sampling distribution;
+    multiple comparisons control (Bonferroni) when scanning many relations.
+
+    - Conceptualise missingness MCAR/MAR/MNAR and the bias they induce; practical
+    sensitivity analysis via pattern plots.'
+  number: 2
+  phase: Foundations
+  project:
+    dataset: 'Kaggle House Prices: Advanced Regression Techniques (Ames)'
+    metrics: '- Completeness: <5% unknown types
+
+      - At least 10 diagnostic plots with captions
+
+      - Comparison table of imputation strategies on a Ridge baseline (RMSE)'
+    title: Ames Data-Quality Report
+    description: 'Produce a data-quality and exploratory report for Ames: schema table,
+      missingness patterns per feature group, robust univariate summaries, pairwise
+      correlations (rank-based), and a draft feature dictionary. Implement at least
+      two imputation strategies and compare their effect on downstream baseline error
+      via a tiny Ridge baseline.'
+    dataset_links: '- <https://www.kaggle.com/c/house-prices-advanced-regression-techniques>'
+    nuances: '- Be explicit about leakage risks when imputing using target-derived
+      information
+
+      - Document categorical levels consolidation decisions'
+  summary: You learn to treat cleaning, imputation, and robust descriptive statistics
+    as first-class modelling steps. The report you write must justify your choices
+    with plots and simple tests. That discipline pays off when regularised models
+    arrive next week.
+  title: Data Cleaning, Missingness, and Robust Descriptives
+  bundles:
+  - bundle_stats_core
+  - bundle_sklearn_core
+'20':
+  bibliography: '- Angrist & Pischke — Mostly Harmless Econometrics.
+
+    - Imbens & Rubin — Causal Inference for Statistics, Social, and Biomedical Sciences.
+
+    - Hernán & Robins — Causal Inference: What If.'
+  code_focus: '- Formulate a causal graph; identify assumptions (back-door, front-door);
+    run a DoWhy pipeline: identify → estimate → refute with placebo and bootstrap
+    refuters.
+
+    - Estimate ATE/CATE with EconML (e.g., Doubly Robust, T-learner, Causal Forests);
+    include uplift plots and policy curves.
+
+    - Sensitivity analysis: how robust is your effect to unobserved confounding?'
+  docs: '- https://microsoft.github.io/dowhy/
+
+    - https://www.pywhy.org/dowhy/v0.9/example_notebooks/dowhy_ihdp_data_example.html
+
+    - https://econml.azurewebsites.net/'
+  math_stats: '- Potential outcomes, ignorability and overlap; propensity scores and
+    balancing.
+
+    - Doubly robust estimation; orthogonalisation; heterogeneous treatment effects.
+
+    - Refutation logic and why observational claims must be humble.'
+  number: 20
+  phase: Causality (Foundations)
+  project:
+    title: 'Job-Training Effect: Re-examining LaLonde/NSW'
+    dataset: NSW/LaLonde experimental + observational replicas (IHDP optional).
+    description: Estimate the causal effect of a training programme on earnings. Start
+      with naive OLS; then apply propensity score methods and a doubly robust estimator.
+      Run DoWhy refuters (placebo, bootstrap) and present a sensitivity analysis.
+    dataset_links: '- <https://users.nber.org/~rdehejia/data/.nswdata2.html>
+
+      - <https://www.pywhy.org/dowhy/v0.9/example_notebooks/dowhy_ihdp_data_example.html>'
+    metrics: '- Estimated ATE with CIs; uplift curves; refuter stability; overlap
+      diagnostics.'
+    nuances: '- Separate experimental from observational samples; demonstrate how
+      estimates drift.
+
+      - Discuss untestable assumptions explicitly in your report.'
+  summary: You learn to ask and answer ‘what if’ responsibly. Instead of treating
+    correlation as causation, you will articulate assumptions, quantify sensitivity,
+    and present results with the humility that observational data demands.
+  title: Treatment Effects with DoWhy/EconML
+  bundles:
+  - bundle_causal
+'21':
+  bibliography: '- Barocas, Hardt, Narayanan — *Fairness and Machine Learning* (open
+    textbook).
+
+    - Mitchell et al. (2019) “Model Cards for Model Reporting” (FAT\*’19).
+
+    - Molnar — *Interpretable Machine Learning* (2e).
+
+    - Ribeiro, Singh, Guestrin (2016) “Why Should I Trust You?” (LIME, KDD).
+
+    - Kleinberg, Mullainathan, Raghavan (2016) “Inherent Trade-Offs in the Fair Determination
+    of Risk Scores.”'
+  code_focus: '- Assess group fairness on tabular classifiers with `fairlearn` (metrics:
+    demographic parity, equalised odds; dashboards and report artefacts).
+
+    - Local and global explanations: SHAP (TreeExplainer, KernelExplainer) and LIME
+    for tabular and text models; compare stability of attributions under resampling.
+
+    - Build a “model card” template (Markdown) auto-filled from training metadata
+    and evaluation slices.
+
+    - Add privacy-aware preprocessing: simple k-anonymity exploration, suppression,
+    and PII detection heuristics in Pandas; document limitations.'
+  docs: '- Fairlearn quickstart and mitigation user guide. (<https://fairlearn.org/main/quickstart.html>)
+
+    - SHAP documentation. (<https://shap.readthedocs.io/>)
+
+    - LIME documentation (Python). (<https://lime-ml.readthedocs.io/en/latest/lime.html>)
+
+    - NIST AI Risk Management Framework 1.0 overview. (<https://www.nist.gov/itl/ai-risk-management-framework>)
+
+    - EU AI Act overview and timeline. (<https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai>)'
+  math_stats: '- Fairness definitions: demographic parity, equalised odds, predictive
+    parity; incompatibility trade-offs.
+
+    - Game-theoretic attribution (Shapley values): additivity, symmetry, dummy, efficiency;
+    local surrogate models for LIME; variance and faithfulness issues.
+
+    - Risk framing: harm vectors, uncertainty communication, and error decomposition
+    across subpopulations.'
+  number: 21
+  phase: Statistical Modelling → Governance
+  project:
+    title: “Fairness & Explainability Dossier”
+    dataset: UCI Adult Income; German Credit; COMPAS re-implementation (for methodological
+      critique).
+    description: 'Train two classifiers (regularised logistic regression and gradient
+      boosting). Produce: (1) calibrated ROC/PR; (2) fairness metrics across sensitive
+      attributes; (3) SHAP global feature importance and per-instance force plots;
+      (4) LIME explanations for failure cases; (5) a Model Card in Markdown referencing
+      evaluation on slices.'
+    dataset_links: '- UCI Adult from multiple mirrors; German Credit (UCI); for a
+      large sliceable alternative use NYC TLC trips for subgroup analysis by borough
+      (proxy fairness only as a didactic exercise). TLC official repository and AWS/Open
+      Data mirrors. (<https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page>)'
+    metrics: '- AUC/PR-AUC; Brier score; calibration error; disparity measures (DP
+      gap, EO TPR/FPR gaps).'
+    nuances: '- Discuss impossibility results and justify which fairness target you
+      optimise under your domain assumptions; include uncertainty bands for subgroup
+      metrics.'
+  summary: This week formalises your responsibility as a modeller. You will learn
+    to measure disparity, articulate unavoidable trade-offs, and produce transparent,
+    reproducible explanations. The output is not just numbers but a governance artefact
+    (a model card) that surfaces performance on relevant subgroups and makes explicit
+    the intended use, limits, and ethical posture of your model. Expect to feel tension
+    between accuracy and fairness goals—that tension is real and must be managed,
+    not hand-waved.
+  title: Fairness, Explainability, and Model Risk
+  bundles:
+  - bundle_fairness_calibration
+  - bundle_responsible_ai
+'22':
+  bibliography: '- Kleppmann — *Designing Data-Intensive Applications* (O’Reilly).
+
+    - McKinney — *Python for Data Analysis* (3e), chapters on performance and out-of-core
+    strategies.
+
+    - Lakshmanan — *Data Science on the Google Cloud Platform* (O’Reilly), for mental
+    models of columnar storage and Parquet.'
+  code_focus: '- Process tens of millions of rows with **Dask DataFrame**; map-partitions
+    patterns; `persist()` vs `compute()`.
+
+    - Query large Parquet partitions with **DuckDB** from Python; pushdown filters;
+    `read_parquet`, `read_csv_auto`, `FROM read_parquet(...)`.
+
+    - Optional Spark: reproduce one query in PySpark to understand API differences.
+
+    - Ray or Dask comparison for parallel task graphs; when to stay single-node versus
+    cluster.'
+  docs: '- [Dask DataFrame](https://docs.dask.org/en/stable/dataframe.html)
+
+    - [DuckDB Docs](https://duckdb.org/docs/)
+
+    - [PySpark DataFrame Guide](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/dataframe.html)
+
+    - [Ray Data](https://docs.ray.io/en/latest/data/data.html)'
+  math_stats: '- Throughput vs latency; cost models for IO-bound vs CPU-bound operators;
+    effect of columnar storage on scan cost.
+
+    - Sampling error in big data: why “n is large” does not remove bias; design a
+    robust sub-sampling strategy.'
+  number: 22
+  phase: Data Engineering for DS
+  project:
+    title: '“NYC Taxi: From Raw to Features at Scale”'
+    dataset: NYC TLC Trip Records (Parquet/CSV).
+    description: 'Build an end-to-end notebook that: (1) lazily loads a year of trips;
+      (2) computes rolling hourly aggregates by pickup zone; (3) materialises a features
+      table in DuckDB; (4) benchmarks Dask vs DuckDB for a representative group-by;
+      (5) exports training features to Parquet for downstream modelling.'
+    dataset_links: '- NYC TLC official portal; AWS Open Data registry; Google Cloud
+      Marketplace listing (if you prefer BigQuery). (<https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page>)'
+    metrics: '- Wall-clock, peak memory, and cost (if executed in the cloud); verify
+      aggregates against small-n Pandas baseline.'
+    nuances: '- Partitioning strategy by time and zone; avoiding task graph blow-ups;
+      data type discipline (categoricals vs strings).'
+  summary: 'You will learn to stop pretending that everything fits in memory. The
+    goal is pragmatic: build a pattern you can re-use for any “medium-big” dataset
+    on a laptop or Colab, reserving clusters for when you truly need them. Mastery
+    here pays off every time you meet a CSV with eight digits of rows.'
+  title: Out-of-Core Analytics and Columnar Workflows
+  bundles:
+  - bundle_scaling_data
+'23':
+  bibliography: '- Vassilakis — *Mastering PostgreSQL in Application Development*
+    (2e).
+
+    - Karau & Warren — *High Performance Spark* (for contrastive reading on joins
+    and partitioning).
+
+    - Feast team whitepapers/blog posts on offline/online consistency.'
+  code_focus: '- Write performant **SQL** with analytic/window functions; CTEs; materialised
+    views for features.
+
+    - Use **SQLAlchemy 2.0** to manage connections and transactions; parameterised
+    queries; ORM vs Core.
+
+    - Spin up **PostgreSQL** locally (Docker) and load a sample schema; index selection
+    and EXPLAIN/ANALYZE basics.
+
+    - First contact with a **feature store** (Feast): define entities, feature views,
+    and online/offline stores.'
+  docs: '- [PostgreSQL Window Functions](https://www.postgresql.org/docs/current/functions-window.html)
+
+    - [SQLAlchemy 2.0 Tutorial](https://docs.sqlalchemy.org/en/20/tutorial/index.html)
+
+    - [dbt Documentation](https://docs.getdbt.com/docs/introduction)
+
+    - [DuckDB & Pandas Integration](https://duckdb.org/docs/guides/python/pandas.html)
+
+    - [Feast Documentation](https://docs.feast.dev/)'
+  math_stats: '- Correct computation of rolling metrics and leakage-free feature windows;
+    pitfalls of late materialisation.
+
+    - Cardinality and join selectivity; understanding skew and its impact on group-by
+    estimates.'
+  number: 23
+  phase: Data Engineering for DS
+  project:
+    title: “Pagila Analytics & Feature Store”
+    dataset: Pagila (PostgreSQL sample); optionally join IMDB basics for enrichment
+      exercises.
+    description: Load Pagila; write SQL to compute customer recency/frequency/monetary
+      (RFM), churn proxies, and rolling spend features with leakage-safe windows.
+      Register 3–5 features in Feast, materialise to offline store, and run an online
+      inference demo from Python.
+    dataset_links: '- Pagila official repositories and Postgres mirrors; IMDB Non-Commercial
+      Datasets (TSV). (<https://github.com/devrimgunduz/pagila>)'
+    metrics: '- SQL correctness via unit tests (expectations on row counts and invariants);
+      query latency; feature freshness.'
+    nuances: '- Idempotent ETL; schema evolution; how to backfill without breaking
+      model expectations.'
+  summary: This week makes you fluent in the lingua franca of data. You will craft
+    features where they belong—close to the data—then deliver them consistently to
+    training and serving. This saves entire classes of bugs and makes downstream modelling
+    honest.
+  title: Analytical SQL + ORM + Feature Delivery
+  bundles:
+  - bundle_scaling_data
+  - bundle_orchestration_tracking
+'24':
+  bibliography: '- Lakshmanan et al. — *Machine Learning Design Patterns* (O’Reilly),
+    patterns on pipeline orchestration and monitoring.
+
+    - Ville Satopaa et al. “Information Theoretic Measures of Change Detection” (for
+    drift intuition).
+
+    - Breck et al. (2017) “The ML Test Score.”'
+  code_focus: '- Build production-like pipelines with **Prefect 2** (tasks, flows,
+    retries, caching, parameters; local agent).
+
+    - Compare to **Airflow** with a minimal DAG to understand scheduler vs orchestrator
+    differences.
+
+    - Data validation with **Great Expectations** or **Pandera**; model/data drift
+    detection with **Evidently**.
+
+    - Track experiments with **MLflow**; promote best runs to a simple “model registry”
+    folder with metadata.'
+  docs: '- [Prefect Quickstart](https://docs.prefect.io/latest/get-started/overview/)
+
+    - [Apache Airflow Tutorial](https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html)
+
+    - [Evidently Documentation](https://docs.evidentlyai.com/)
+
+    - [Great Expectations Quickstart](https://greatexpectations.io/docs/tutorials/quickstart/)
+
+    - [MLflow Tracking](https://mlflow.org/docs/latest/tracking.html)'
+  math_stats: '- Drift types: covariate shift vs label shift; PSI/JS divergence; confidence
+    bands for monitoring metrics.
+
+    - Expected calibration error and threshold selection under drift.'
+  number: 24
+  phase: MLOps Foundations
+  project:
+    title: '“Taxi Forecast Pipeline: Scheduled & Watched”'
+    dataset: NYC TLC monthly aggregates built in Week 22.
+    description: Build a Prefect flow that (1) ingests the latest month, (2) recomputes
+      features, (3) retrains a simple gradient boosting forecaster, (4) validates
+      with Great Expectations, (5) logs to MLflow, (6) posts a drift report with Evidently.
+    dataset_links: '- TLC sources as before. (<https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page>)'
+    metrics: '- End-to-end runtime, task success rate, drift alerts precision (alerts
+      that correspond to meaningful performance drops).'
+    nuances: '- Scheduling cadence; backfilling; deterministic environments; secrets
+      handling.'
+  summary: You are turning craft into systems thinking. The product is a reliable
+    pipeline that can run unattended, prove it behaved, and warn you when the world
+    changes underneath your model.
+  title: From Notebooks to Flows
+  bundles:
+  - bundle_orchestration_tracking
+  - bundle_monitoring
+'25':
+  bibliography: '- *Dive into Deep Learning* (D2L), Chapters 1–4.
+
+    - Goodfellow, Bengio, Courville — *Deep Learning* (selected sections on backprop
+    and optimisation).
+
+    - Bishop — *Pattern Recognition and Machine Learning* (Chapter 5, neural networks).'
+  code_focus: '- **PyTorch** essentials: tensors, broadcasting, `autograd`, `nn.Module`,
+    `DataLoader`.
+
+    - Implement a clean training loop: gradient clipping, early stopping, checkpointing,
+    and seeding.
+
+    - Train MLPs on tabular sets (Adult, Higgs small), plus **MNIST** for classification;
+    start using TorchMetrics.'
+  docs: '- [PyTorch Tensors & Autograd](https://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html)
+
+    - [TorchVision Datasets](https://pytorch.org/vision/stable/datasets.html)
+
+    - [TorchMetrics](https://lightning.ai/docs/torchmetrics/stable/index.html)'
+  math_stats: '- Chain rule and backpropagation; cross-entropy vs MSE; softmax and
+    log-sum-exp stability.
+
+    - Capacity, regularisation (weight decay, dropout), and bias–variance revisited
+    in deep nets.'
+  number: 25
+  phase: Deep Learning Fundamentals
+  project:
+    title: “From Linear to MLP”
+    dataset: MNIST (TorchVision); Adult tabular.
+    description: Re-implement your Week-9 logistic classifier as an MLP; compare calibration
+      and decision quality. On MNIST, reach ≥98% test accuracy with a small MLP; log
+      experiments with MLflow.
+    dataset_links: '- MNIST TorchVision; alternative TFDS where useful. (<https://docs.pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html>)'
+    metrics: '- Accuracy/AUROC; Brier score; training time; parameter count.'
+    nuances: '- Initialisation, learning-rate schedules; overfitting diagnostics with
+      learning curves.'
+  summary: You will internalise the mechanics of tensors and gradients and learn to
+    write a robust, inspectable training loop. You also begin to see when deep nets
+    are overkill for tabular data.
+  title: The Gradient Engine
+  bundles:
+  - bundle_pytorch_core
+  - bundle_dl_texts
+'26':
+  bibliography: '- He et al. (2015) “Deep Residual Learning for Image Recognition.”
+
+    - Smith (2017) “Cyclical Learning Rates for Training Neural Networks.”
+
+    - D2L chapters on CNNs and training tricks.'
+  code_focus: '- Implement CNNs for **CIFAR-10**; use data augmentation, weight decay,
+    cosine LR schedules.
+
+    - Use **AMP** (autocast + GradScaler) for faster training on GPU; profile and
+    compare wall-clock.
+
+    - Try **Tiny-ImageNet** as a stretch dataset; use transfer learning from ResNet-18.'
+  docs: '- [TorchVision CIFAR-10](https://pytorch.org/vision/main/generated/torchvision.datasets.CIFAR10.html)
+
+    - [PyTorch AMP Guide](https://pytorch.org/docs/stable/amp.html)
+
+    - [Tiny-ImageNet Dataset](https://www.cs.toronto.edu/~kriz/cifar.html)'
+  math_stats: '- Convolution as sparse, weight-sharing linear operator; receptive
+    fields; padding/stride effects.
+
+    - Regularisation in deep vision models; effect of augmentation as data-dependent
+    prior.'
+  number: 26
+  phase: Deep Learning Fundamentals
+  project:
+    title: “CIFAR-10 to Tiny-ImageNet”
+    dataset: CIFAR-10; Tiny-ImageNet.
+    description: 'Train two models on CIFAR-10: (1) from scratch CNN, (2) transfer-learned
+      ResNet-18. Then attempt Tiny-ImageNet with careful augmentation and early stopping.
+      Use AMP and log throughput.'
+    dataset_links: '- CIFAR official page; TFDS mirror; Tiny-ImageNet mirrors. (<https://www.cs.toronto.edu/~kriz/cifar.html>)'
+    metrics: '- Top-1 accuracy ≥85% on CIFAR-10; training images/sec; GPU memory footprint.'
+    nuances: '- Data loader bottlenecks; augmentations that harm vs help; correct
+      evaluation (no augmentation at test time).'
+  summary: You will transition from textbook CNNs to production-like training where
+    throughput and stability matter. This cements habits that will transfer to NLP
+    and multimodal work.
+  title: Convolutions, Augmentations, and Mixed Precision
+  bundles:
+  - bundle_pytorch_core
+  - bundle_dl_texts
+'27':
+  bibliography: '- Bouthillier et al. (2019) “Unreproducible Research is Reproducible.”
+
+    - Raff (2019) “A Step Toward Quantifying Independently Reproducible Machine Learning
+    Research.”
+
+    - D2L training-tricks sections.'
+  code_focus: '- Reproducibility: seeds, determinism flags, version pinning, and hashing
+    datasets.
+
+    - Checkpointing best practices; resume-training and evaluation time augmentation
+    invariance checks.
+
+    - TorchMetrics for robust evaluation; confusion matrices and per-class metrics;
+    early stopping with patience.
+
+    - Optional: gradient accumulation; mixed precision pitfalls; gradient norm logging.'
+  docs: '- [TorchMetrics Classification](https://torchmetrics.readthedocs.io/en/stable/classification/overview.html)
+
+    - [PyTorch Reproducibility Notes](https://pytorch.org/docs/stable/notes/randomness.html)'
+  math_stats: '- Generalisation monitoring: validation curves; bootstrap confidence
+    intervals for accuracy and F1.
+
+    - Hyperparameter search as experimental design; multiple testing pitfalls.'
+  number: 27
+  phase: Deep Learning Fundamentals
+  project:
+    title: “Reproduce Yourself”
+    dataset: Fashion-MNIST (Keras or TFDS mirror for cross-framework parity).
+    description: Train identical architectures in PyTorch and Keras, lock random seeds,
+      and document remaining variation. Package your training script with CLI args
+      and a `requirements.txt`/`poetry.lock`.
+    dataset_links: '- Kaggle Fashion-MNIST; Keras dataset page; TFDS catalogue. (<https://www.kaggle.com/datasets/zalando-research/fashionmnist>)'
+    metrics: '- Variance in test accuracy over 10 runs; time-to-train; hash of preprocessed
+      train split.'
+    nuances: '- Nondeterminism of GPU kernels; library version drift; dataset shuffling
+      sources.'
+  summary: Models that cannot be reproduced cannot be trusted. You will learn to control
+    randomness, track artefacts, and document exactly what produced a result.
+  title: Make It Reliable
+  bundles:
+  - bundle_pytorch_core
+  - bundle_mlops_hygiene
+'28':
+  bibliography: '- Chollet — *Deep Learning with Python* (2e).
+
+    - Abadi et al. (2016) “TensorFlow: A System for Large-Scale Machine Learning.”'
+  code_focus: '- Replicate Week-25/26 experiments in **Keras** (Sequential and Functional
+    APIs); callbacks (ReduceLROnPlateau, EarlyStopping, ModelCheckpoint).
+
+    - Build performant input pipelines with **tf.data**; use **TensorFlow Datasets
+    (TFDS)** to simplify ingestion.
+
+    - Export models; basic **ONNX** or TFLite awareness for later serving.'
+  docs: '- [Keras Sequential & Functional API](https://keras.io/guides/sequential_model/)
+
+    - [tf.data Performance Guide](https://www.tensorflow.org/guide/data_performance)
+
+    - [TensorFlow Datasets](https://www.tensorflow.org/datasets)'
+  math_stats: '- Computational graphs vs eager execution; performance implications
+    of prefetching and caching.
+
+    - Loss surfaces under different schedulers; interpreting training dynamics.'
+  number: 28
+  phase: Deep Learning Fundamentals
+  project:
+    title: '“Keras Mirror: CIFAR-10”'
+    dataset: CIFAR-10 via TFDS/Keras.
+    description: Rebuild your CIFAR-10 classifier using `tf.data` with `cache()`,
+      `prefetch()`, and `AUTOTUNE`. Compare throughput to PyTorch Dataloader; export
+      model and load for inference in a fresh process.
+    dataset_links: '- TFDS CIFAR-10; Keras CIFAR-10 page. (<https://www.tensorflow.org/datasets/catalog/cifar10>)'
+    metrics: '- Examples/sec; accuracy parity with PyTorch within ±0.5%; size of saved
+      model.'
+    nuances: '- Input bottlenecks; graph mode vs eager; callback-driven training ergonomics.'
+  summary: You will gain bilingual fluency. Knowing both PyTorch and Keras lets you
+    work across codebases and pick the right tool for a team’s stack without dogma.
+  title: TF Mirror and Production-Friendly Pipelines
+  bundles:
+  - bundle_keras_tf
+'29':
+  bibliography: '- Howard & Gugger — *Natural Language Processing with Transformers*
+    (selected chapters for fine-tuning).
+
+    - Zhang et al. (2016) *Understanding Deep Learning Requires Rethinking Generalization*
+    (for healthy scepticism).'
+  code_focus: '- Transfer learning with `keras.applications` (e.g., MobileNetV2) and
+    fine-tuning strategies; layer freezing schedules.
+
+    - Regularisation in Keras (Dropout, BatchNorm, weight decay via `l2`).
+
+    - First text task in Keras: IMDB sentiment with `TextVectorization`; compare to
+    a compact Transformer from `keras_nlp` or Hugging Face (lite) for the same task.'
+  docs: '- [Keras Applications](https://keras.io/api/applications/)
+
+    - [Keras NLP Guides](https://keras.io/guides/keras_nlp/)
+
+    - [TensorFlow Datasets IMDB](https://www.tensorflow.org/datasets/catalog/imdb_reviews)'
+  math_stats: '- Pretrained features as priors; catastrophic forgetting; effective
+    learning rate under layer freezing.
+
+    - Tokenisation: subword models and OOV handling; calibration in text classifiers.'
+  number: 29
+  phase: Deep Learning Fundamentals
+  project:
+    title: “Two Ways to Sentiment”
+    dataset: IMDB 50k reviews.
+    description: 'Build two sentiment classifiers: (1) bag-of-words + logistic regression
+      baseline, (2) Keras LSTM or small Transformer. Compare calibration and error
+      modes; produce a confusion matrix by review length decile.'
+    dataset_links: '- Keras/TensorFlow IMDB; Kaggle mirrors for comparison. (<https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews>)'
+    metrics: '- Accuracy, macro-F1, ECE; latency on CPU.'
+    nuances: '- Sequence length trade-offs; tokeniser training artifacts; handling
+      class imbalance if you subset.'
+  summary: You connect transfer learning and lightweight NLP, seeing how pretraining
+    and regularisation change the optimisation landscape. The aim is not state-of-the-art
+    scores but sound engineering and honest evaluation.
+  title: Transfer and Text in Keras
+  bundles:
+  - bundle_keras_tf
+  - bundle_nlp_foundations
+'3':
+  bibliography: '- *Elements of Statistical Learning (ESL)* — Hastie, Tibshirani,
+    Friedman — (2009) — <https://hastie.su.domains/ElemStatLearn/>
+
+    - *CS229 Supervised Learning notes (model selection section)* — Stanford — (2019)
+    — <https://cs229.stanford.edu/>'
+  code_focus: '- Compose preprocessing with ColumnTransformer (numeric: impute+scale;
+    categorical: impute+one-hot; dates: custom transformer).
+
+    - Build full Pipeline: preprocessing → estimator; ensure no leakage by fitting
+    only inside cross-validation.
+
+    - Train/validation/test protocol; StratifiedKFold vs KFold; repeated CV for variance
+    estimates.
+
+    - Custom sklearn-compatible transformers (fit/transform signatures), including
+    target-aware transforms via TransformedTargetRegressor.'
+  docs: '- [sklearn: Pipeline & ColumnTransformer](https://scikit-learn.org/stable/modules/compose.html#columntransformer-for-heterogeneous-data)
+
+    - [sklearn: Cross-validation strategies](https://scikit-learn.org/stable/modules/cross_validation.html)'
+  math_stats: '- Bias–variance via repeated CV estimates; what high variance in scores
+    tells you.
+
+    - Linear algebra refresher: projections and rank to prepare for least squares
+    next week.'
+  number: 3
+  phase: Foundations
+  project:
+    title: Fair Adult Income Baseline
+    dataset: UCI Adult (Census Income)
+    description: 'Construct an end-to-end Pipeline for Adult: robust preprocessing,
+      logistic baseline with CV, and a hold-out test set. Produce a short model card:
+      features used, preprocessing steps, CV protocol, and limitations.'
+    dataset_links: '- <https://archive.ics.uci.edu/dataset/2/adult>'
+    metrics: '- ROC AUC, PR AUC on test
+
+      - Report fold-wise variance
+
+      - Baseline better than DummyClassifier by substantial margin'
+    nuances: '- Document the decision about handling ‘?’, strip whitespace in categorical
+      labels
+
+      - Keep a pristine test set'
+  summary: You operationalise honest evaluation. Everything—imputation, encoding,
+    scaling—lives inside the Pipeline so cross-validation reflects reality. This is
+    the guardrail that prevents leaky scores that look great and fail in production.
+  title: Pipelines, ColumnTransformer, Honest CV
+  bundles:
+  - bundle_linear_algebra
+  - bundle_sklearn_core
+'30':
+  bibliography: '- Vaswani et al., “Attention Is All You Need,” NeurIPS 2017.
+
+    - Hu et al., “LoRA: Low-Rank Adaptation of Large Language Models,” 2021.
+
+    - Jurafsky & Martin, “Speech and Language Processing” (3e draft): Transformers
+    & QA chapters.
+
+    - Tunstall, von Werra, Wolf, “Natural Language Processing with Transformers” (O’Reilly,
+    2022) — fine-tuning chapters.'
+  code_focus: '- Set up Hugging Face Transformers + Datasets + Accelerate + PEFT;
+    choose a compact base model (e.g., distilbert-base-uncased) then apply LoRA adapters
+    on attention projections.
+
+    - Train 2 tasks end-to-end: (A) Sentiment classification (GLUE/SST-2) with Trainer
+    API; (B) Extractive QA (SQuAD v1.1 or v2.0) with default run_qa script or Trainer.
+
+    - Memory efficiency: 8-bit/4-bit loading via bitsandbytes; gradient accumulation;
+    mixed precision (fp16/bf16 on Colab Pro).
+
+    - Hyperparameters: rank r for LoRA, alpha, dropout; learning rate warmup and linear
+    decay; early stopping; seed fixing for reproducibility.
+
+    - Evaluation: accuracy (SST-2); EM/F1 (SQuAD) using evaluate; calibration check
+    with reliability curve on classifier.
+
+    - Export & reuse: save adapter weights; optionally merge & export to ONNX Runtime
+    for inference; compare latency and memory between full FT vs PEFT.'
+  docs: '- <https://huggingface.co/docs/transformers/index>
+
+    - <https://huggingface.co/docs/datasets/>
+
+    - <https://huggingface.co/docs/peft/en/index>
+
+    - <https://huggingface.co/docs/peft/main/en/conceptual_guides/lora>
+
+    - <https://github.com/TimDettmers/bitsandbytes>
+
+    - <https://huggingface.co/docs/evaluate/en/index>
+
+    - <https://arxiv.org/abs/1706.03762>'
+  math_stats: '- Cross-entropy, softmax, label smoothing; calibration and proper scoring
+    rules.
+
+    - Low-rank factorisation: parameter count reduction by decomposing ΔW ≈ A·B with
+    rank r; trace/nuclear norm intuition.
+
+    - Backpropagation refresher and gradient flow through adapter modules; effects
+    of mixed precision on numerical stability.'
+  number: 30
+  phase: Deep Learning & LLMs
+  project:
+    title: 'Adapter-Tuned BERT: Classifier + QA'
+    dataset: GLUE/SST-2 for classification; SQuAD v1.1 or v2.0 for QA
+    description: 'Implement two PEFT pipelines: (1) fine-tune a sentiment classifier
+      with LoRA on a compact BERT; (2) fine-tune extractive QA with LoRA. Track memory,
+      wall-clock, and validation metrics; export adapters; test ONNX inference.'
+    dataset_links: '- <https://huggingface.co/datasets/glue>
+
+      - <https://huggingface.co/datasets/squad>'
+    metrics: '- SST-2: accuracy ≥ 90% with PEFT on dev
+
+      - SQuAD: EM ≥ 75, F1 ≥ 83 (v1.1) or competitive scores on v2.0
+
+      - Inference: ≥ 30% memory reduction vs full fine-tune; latency reported'
+    nuances: '- Monitor trainable parameter count vs rank r.
+
+      - Check class calibration on SST-2; examine threshold effects.
+
+      - SQuAD v2.0: no-answer threshold tuning and evaluation script parity.'
+  summary: You will learn to adapt a pretrained encoder efficiently with LoRA, proving
+    that small adapter matrices can approach full fine-tune quality at a fraction
+    of the cost. You will compare training curves, memory footprints, and export paths
+    so that you can defend PEFT choices in production settings.
+  title: PEFT/LoRA Fine-Tuning for Classification & QA
+  bundles:
+  - bundle_peft_quant
+  - bundle_responsible_ai
+'31':
+  bibliography: '- Goodfellow, Bengio, Courville, “Deep Learning” — optimisation &
+    generalisation chapters.
+
+    - Ozsvald & Gorelick, “High Performance Python” (O’Reilly, 2e) — profiling chapters.'
+  code_focus: '- Determinism: seeds across NumPy/PyTorch; cudnn.deterministic; dataloader
+    workers; run capture scripts.
+
+    - Checkpointing: periodic and best-metric; resume training runs; keep artifacts
+    minimal.
+
+    - Profiling & performance: PyTorch Profiler; trace key bottlenecks (CPU/GPU util,
+    dataloader, augmentation).
+
+    - Experiment tracking: MLflow projects, parameters, metrics, and artifacts; model
+    registry; compare runs.
+
+    - Packaging: simple train.py with Hydra-like config or argparse, reproducible
+    environment files (requirements.txt/pyproject.toml).'
+  docs: '- <https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html>
+
+    - <https://pytorch.org/docs/stable/profiler.html>
+
+    - <https://mlflow.org/docs/latest/index.html>
+
+    - <https://pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html>'
+  math_stats: '- Runtime complexity: throughput vs latency; mini-batch variance effects.
+
+    - Variance of estimators across seeds; confidence intervals via repeated runs.
+
+    - Numerical stability with mixed precision; grad scaling.'
+  number: 31
+  phase: Deep Learning & LLMs
+  project:
+    title: Tracked Image Classifier with Reproducible Runs
+    dataset: CIFAR-10
+    description: Refactor your Week-25/26 CNN or a new ResNet18 on CIFAR-10 into a
+      script with config, seeds, MLflow logging, and robust checkpointing. Profile
+      and fix your top bottleneck.
+    dataset_links: '- <https://docs.pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html>'
+    metrics: '- Top-1 accuracy ≥ 90%
+
+      - End-to-end run reproducible within ±0.5% across 3 seeds
+
+      - Profiler report highlighting ≥ 1 resolved hotspot'
+    nuances: '- Distinguish IO vs compute bottlenecks.
+
+      - Keep runs comparable by freezing transforms and seedable splits.'
+  summary: This is your reliability week. You will turn ad-hoc notebooks into auditable,
+    reproducible training runs with artefacts, metrics, and profiled performance so
+    future you—and colleagues—can reproduce claims precisely.
+  title: Reproducibility, Checkpointing, Profiling, and Experiment Tracking
+  bundles:
+  - bundle_pytorch_core
+  - bundle_mlops_hygiene
+'32':
+  bibliography: '- Raschka, Mirjalili, “Machine Learning with PyTorch and Scikit-Learn”
+    (Packt, 2022) — deployment chapters.
+
+    - Ivanov, “High Performance Python: Practical Performant Programming for Humans”
+    (Apress, 2021) — selected sections.'
+  code_focus: '- Choose one: (A) multimodal late-fusion (image encoder + text features)
+    or (B) text classifier with ONNX/TensorRT export.
+
+    - MLflow model registry; promote from staging to production; smoke tests for on-nx
+    inference equivalence.
+
+    - Basic FastAPI inference service; batch and single-request endpoints; pydantic
+    schema; latency logging.'
+  docs: '- <https://onnxruntime.ai/docs/>
+
+    - <https://fastapi.tiangolo.com/>
+
+    - <https://mlflow.org/docs/latest/index.html>
+
+    - <https://huggingface.co/datasets/sxj1215/mmimdb>
+
+    - <https://huggingface.co/datasets/ag_news>'
+  math_stats: '- Feature concatenation vs attention pooling; calibration drift post-export.
+
+    - Throughput modelling: QPS vs batch size; cold vs warm latency.'
+  number: 32
+  phase: Deep Learning & LLMs
+  project:
+    title: Deployed Classifier (Multimodal or Text)
+    dataset: 'Option A: MM-IMDb (posters + plots, multi-label); Option B: AG News
+      (4-class text).'
+    description: Train, register, and serve a model. For A, extract CNN features from
+      posters and TF-IDF or embeddings from plots; fuse and train a multi-label classifier.
+      For B, fine-tune a compact transformer, export to ONNX, and stand up a FastAPI
+      service.
+    dataset_links: '- <https://huggingface.co/datasets/sxj1215/mmimdb>
+
+      - <https://huggingface.co/datasets/ag_news>'
+    metrics: '- A: macro-F1 ≥ 0.60 across genres; B: accuracy ≥ 92%
+
+      - p50 latency ≤ 50 ms (local), p95 ≤ 150 ms for 1-sentence inputs
+
+      - Parity tests: ONNX vs PyTorch prediction agreement ≥ 99.5% on 1k samples'
+    nuances: '- Multi-label thresholds vs macro/micro averaging.
+
+      - Schema validation at the service boundary; strict error handling.'
+  summary: You will ship something. Either a multimodal predictor or an optimised
+    text model with an HTTP API and a repeatable release path. This consolidates the
+    deep-learning phase into a demonstrable, runnable service.
+  title: 'Phase-D Project: Multimodal or Text-Only Production Model'
+  bundles:
+  - bundle_serving_api
+  - bundle_orchestration_tracking
+'33':
+  bibliography: '- Manning & Schütze, “Foundations of Statistical NLP” (MIT Press,
+    1999) — n-grams, tagging, parsing.
+
+    - Jurafsky & Martin, “Speech and Language Processing” (3e draft) — tokenisation,
+    POS, parsing.'
+  code_focus: '- spaCy/Stanza pipelines: tokeniser, POS, lemma, dependency parse,
+    NER; customise rules for domains.
+
+    - Corpus handling with Hugging Face Datasets; efficient text cleaning; sentence
+    segmentation; document stores.
+
+    - Comparative tokenisation: whitespace, WordPiece/BPE (SentencePiece), byte-level
+    BPE for later LLM work.'
+  docs: '- <https://spacy.io/usage>
+
+    - <https://stanfordnlp.github.io/stanza/>
+
+    - <https://huggingface.co/docs/datasets/>'
+  math_stats: '- n-gram models and sparsity; Zipf’s law and Heaps’ law; evaluation
+    with perplexity (classical models).
+
+    - Sequence labelling as structured prediction: Markov assumptions, CRF intuition
+    (will use later).'
+  number: 33
+  phase: NLP & GenAI
+  project:
+    title: Linguistic Pipeline & Corpus Explorer
+    dataset: English Wikipedia subset or WikiText-103; optional UD treebanks for evaluation
+    description: Build a robust text-preprocessing pipeline that outputs token, POS,
+      lemma, entities, and dependencies. Provide frequency plots, collocations, and
+      a small evaluation on a held-out labelled slice.
+    dataset_links: '- <https://huggingface.co/datasets/wikipedia>
+
+      - <https://huggingface.co/datasets/wikitext>'
+    metrics: '- Pipeline throughput (docs/sec), memory footprint
+
+      - Tagger/NER spot-checks vs gold slices; coverage and OOV analysis'
+    nuances: '- Unicode normalisation; sentence segmentation errors; domain drift
+      when moving beyond encyclopaedic text.'
+  summary: You will ground NLP in concrete pipelines, not magic. By the end of the
+    week you will be able to ingest, normalise, and linguistically annotate large
+    corpora reproducibly, with awareness of tokenisation trade-offs that later affect
+    model performance.
+  title: 'NLP Foundations: Tokenisation, Tagging, Parsing'
+  bundles:
+  - bundle_embeddings_search
+  - bundle_serving_llm
+'34':
+  bibliography: '- Bird, Klein, Loper, “Natural Language Processing with Python” (O’Reilly)
+    — classic vector-space chapters.
+
+    - Sutton & McCallum, “An Introduction to Conditional Random Fields” (foundational
+    tutorial).'
+  code_focus: '- Feature extraction: TF-IDF with character and word n-grams; hashing
+    trick; stopword and sublinear TF options.
+
+    - Linear baselines: LogisticRegression/LinearSVC for document classification;
+    calibration check.
+
+    - Sequence labelling: sklearn-crfsuite for NER on CoNLL-style BIO tags; feature
+    templates (prefix/suffix, capitalisation, word shape).'
+  docs: '- <https://scikit-learn.org/stable/user_guide.html>
+
+    - <https://sklearn-crfsuite.readthedocs.io/>
+
+    - <https://python-crfsuite.readthedocs.io/en/latest/>
+
+    - <https://huggingface.co/datasets/ag_news>
+
+    - <https://huggingface.co/datasets/conll2003>'
+  math_stats: '- TF-IDF derivation; cosine similarity; margin-based losses.
+
+    - CRF objective (log-likelihood), Viterbi decoding; regularisation (L1/L2) and
+    feature selection.'
+  number: 34
+  phase: NLP & GenAI
+  project:
+    title: 'Two Baselines: News Classifier + CRF NER'
+    dataset: AG News (doc classification) and CoNLL-2003 (NER) or OntoNotes-style
+      substitute
+    description: Ship a strong TF-IDF + linear baseline for AG News and a CRF-based
+      NER with carefully engineered token features.
+    dataset_links: '- <https://huggingface.co/datasets/ag_news>
+
+      - <https://huggingface.co/datasets/conll2003>'
+    metrics: '- AG News: accuracy ≥ 92%; NER: entity-level F1 ≥ 0.85 on dev
+
+      - Error analysis with confusion tables; per-entity breakdown; failure modes
+      documented'
+    nuances: '- Feature leakage via token normalisation; BIO tag consistency; class
+      imbalance handling.'
+  summary: You will establish competitive classical baselines that often rival naive
+    deep models on modest data. This builds judgement about when deep models are justified.
+  title: 'Classical NLP: TF-IDF, Linear Models, and CRFs for NER'
+  bundles:
+  - bundle_embeddings_search
+  - bundle_serving_llm
+'35':
+  bibliography: '- Mikolov et al., “Efficient Estimation of Word Representations in
+    Vector Space” (2013).
+
+    - Reimers & Gurevych, “Sentence-BERT” (2019).'
+  code_focus: '- Train word2vec (CBOW/SGNS) with gensim; evaluate with analogy/similarity;
+    explore subword fastText embeddings; load pre-trained vectors.
+
+    - Sentence embeddings with sentence-transformers (SBERT); semantic search and
+    clustering; dimensionality reduction for visualisation.
+
+    - Build a retrieval baseline over your Week-33 corpus.'
+  docs: '- <https://radimrehurek.com/gensim/auto_examples/index.html>
+
+    - <https://sbert.net/>
+
+    - <https://fasttext.cc/>
+
+    - <https://huggingface.co/sentence-transformers>'
+  math_stats: '- Negative sampling as NCE approximation; PMI connections; subword
+    modelling for OOV.
+
+    - Cosine distance vs Euclidean; hubness in high-dimensional spaces and its mitigation.'
+  number: 35
+  phase: NLP & GenAI
+  project:
+    title: Semantic Index of a Domain Corpus
+    dataset: Use your Week-33 corpus (e.g., Wikipedia slice) + optional domain corpus
+    description: Train or load embeddings, index documents, and implement nearest-neighbour
+      search with qualitative demos and quantitative recall@k.
+    dataset_links: '- <https://huggingface.co/datasets/wikipedia>'
+    metrics: '- Intrinsic: word similarity/analogy on standard lists where applicable
+
+      - Extrinsic: retrieval precision@10 ≥ defined baseline; latency for k-NN queries'
+    nuances: '- Tokenisation consistency between training and inference; memory layout
+      of large indices.'
+  summary: You will move from bag-of-words to meaning-aware representations and assemble
+    your first semantic search system, a stepping stone to RAG.
+  title: 'Distributional Semantics: word2vec, fastText, and Sentence Embeddings'
+  bundles:
+  - bundle_hf_transformers
+  - bundle_serving_llm
+'36':
+  bibliography: '- Vaswani et al., “Attention Is All You Need” (2017).
+
+    - Tunstall, von Werra, Wolf, “NLP with Transformers” — GLUE/SQuAD chapters.'
+  code_focus: '- Full HF fine-tuning flow with Trainer on GLUE (SST-2 or MRPC) and
+    SQuAD v1.1/v2.0; integrate PEFT for efficiency.
+
+    - Robust evaluation: use evaluate for standard metrics; implement EM/F1 script
+    parity for QA; track runs in MLflow.
+
+    - Error analysis: calibration curves for classifiers; answer length and null-answer
+    thresholds for SQuAD2.'
+  docs: '- <https://huggingface.co/docs/transformers/index>
+
+    - <https://huggingface.co/docs/datasets/>
+
+    - <https://huggingface.co/docs/evaluate/en/index>
+
+    - <https://rajpurkar.github.io/SQuAD-explorer/>
+
+    - <https://huggingface.co/docs/peft/en/index>'
+  math_stats: '- Self-attention recap; positional encodings; warmup schedules and
+    generalisation.
+
+    - Proper scoring rules; reliability diagrams; AUROC vs PR-AUC trade-offs with
+    class imbalance.'
+  number: 36
+  phase: NLP & GenAI
+  project:
+    title: Transformer Baselines You Can Trust
+    dataset: GLUE (SST-2 or MRPC) and SQuAD v1.1/v2.0
+    description: Produce robust, well-evaluated fine-tuned transformers with PEFT,
+      including reproducible metrics and calibrated outputs.
+    dataset_links: '- <https://huggingface.co/datasets/glue>
+
+      - <https://huggingface.co/datasets/squad>'
+    metrics: '- SST-2: accuracy ≥ 93%; MRPC: F1 ≥ 88%
+
+      - SQuAD v1.1: EM ≥ 80, F1 ≥ 88 (targets scale with base model size)'
+    nuances: '- Beware data leakage via text normalisation; ensure evaluation scripts
+      match official ones.'
+  summary: 'You will turn transformer fine-tuning into a disciplined craft: consistent
+    metrics, calibrated decisions, and defensible comparisons.'
+  title: Transformer Fine-Tuning (GLUE/SQuAD) with PEFT and Evaluation Best Practice
+  bundles:
+  - bundle_peft_quant
+  - bundle_serving_llm
+'37':
+  bibliography: '- Lewis et al., “Retrieval-Augmented Generation for Knowledge-Intensive
+    NLP” (2020).
+
+    - Gao et al., “Rethinking with Retrieval” (selected sections) — optional.'
+  code_focus: '- Document ingestion: chunking with overlap, metadata, citation retention.
+
+    - Vector store options: FAISS (CPU/GPU) and Chroma; build HNSW/IVF indices; persistence.
+
+    - RAG orchestration: implement a simple retriever-reader with LangChain or LlamaIndex;
+    add reranking (cross-encoder) vs pure dense.
+
+    - Evaluation: use RAGAS on held-out QA pairs; track faithfulness and answer relevance.'
+  docs: '- <https://github.com/facebookresearch/faiss>
+
+    - <https://docs.trychroma.com/>
+
+    - <https://python.langchain.com/docs/get_started/introduction>
+
+    - <https://docs.llamaindex.ai/>
+
+    - <https://docs.ragas.io/>
+
+    - <https://huggingface.co/docs/datasets/>'
+  math_stats: '- ANN search (HNSW/IVF/PQ) intuition; recall/latency trade-offs.
+
+    - Chunking as a bias-variance knob for retrieval; effects on grounding & hallucinations.'
+  number: 37
+  phase: NLP & GenAI
+  project:
+    title: Grounded Q&A over Wikipedia
+    dataset: Wikipedia snapshot + held-out QA (SQuAD or custom)
+    description: Build a RAG pipeline over a constrained Wikipedia slice; evaluate
+      retrieval and generation quality; compare dense vs dense+rerank.
+    dataset_links: '- <https://huggingface.co/datasets/wikipedia>
+
+      - <https://huggingface.co/datasets/squad>'
+    metrics: '- RAGAS faithfulness ≥ 0.7 on dev
+
+      - Retrieval recall@5 ≥ 0.9 on synthetic oracle questions
+
+      - Latency p95 ≤ 500 ms per query locally'
+    nuances: '- Citations in output; guard against truncated spans; store hashes for
+      doc versioning.'
+  summary: You will connect indexing theory to grounded generation practice, including
+    rigorous RAG evaluation so you can iterate intelligently rather than guess.
+  title: 'RAG Fundamentals: Ingestion, Indexing, Retrieval, and Evaluation'
+  bundles:
+  - bundle_rag_orchestration
+  - bundle_rag_eval
+'38':
+  bibliography: '- Kleppmann, “Designing Data-Intensive Applications” — service SLAs
+    & back-pressure.
+
+    - HuggFace LLM course: deployment & evaluation chapters.'
+  code_focus: '- Stand up a local text-generation server: pick vLLM or Hugging Face
+    TGI; configure tensor parallelism; enable streaming.
+
+    - Client service: wrap generation behind FastAPI; implement batching & timeouts;
+    log prompts, seeds, and model SHA.
+
+    - Optimisation: 4-bit/8-bit quantisation where supported; prompt caching; max
+    tokens and stop sequences.
+
+    - Benchmarking: load-test QPS vs latency; measure throughput under batch sizes;
+    record token/sec.'
+  docs: '- <https://docs.vllm.ai/>
+
+    - <https://huggingface.co/docs/text-generation-inference/index>
+
+    - <https://fastapi.tiangolo.com/>
+
+    - <https://onnxruntime.ai/docs/>'
+  math_stats: '- Throughput models: tokens/sec vs context length; effect of kv-cache
+    and batch.
+
+    - Quantisation error basics; impact on perplexity and task accuracy.'
+  number: 38
+  phase: NLP & GenAI
+  project:
+    title: LLM Text-Gen Microservice with Benchmarks
+    dataset: N/A (use curated prompt sets + small public QA lists)
+    description: Deploy a generation server, wrap with FastAPI, and deliver a benchmark
+      report with latency/throughput curves under different batch sizes and quantisation
+      settings.
+    dataset_links: ''
+    metrics: '- p50 ≤ 150 ms for short prompts (cached), p95 ≤ 600 ms
+
+      - Throughput tokens/sec reported for 3 batch sizes
+
+      - Error rate (timeouts) < 1% in a 10-minute load test'
+    nuances: '- Memory vs batch trade-offs; request deduplication; deterministic generation
+      for regression tests.'
+  summary: 'You will learn to make LLMs behave like systems: observable, efficient,
+    and predictable under load, with hard numbers—not vibes.'
+  title: 'Serving LLMs Efficiently: vLLM, TGI, Quantisation, and FastAPI'
+  bundles:
+  - bundle_responsible_ai
+'39':
+  bibliography: '- Koehn, “Statistical Machine Translation” — tokenisation and multilingual
+    corpora.
+
+    - Eisenstein, “Introduction to NLP” (MIT Press, 2019) — multilingual chapters.'
+  code_focus: '- Datasets: process OSCAR/OPUS slices; build multilingual tokenisation
+    pipelines; normalise UTF-8, NFC/NFKC.
+
+    - Fine-tune or evaluate a multilingual model (e.g., XLM-R base) on XNLI or XQuAD;
+    explore zero-shot transfer.
+
+    - Domain adaptation: continued pretraining (language-modeling) vs task-tuning;
+    vocabulary drift checks.'
+  docs: '- <https://oscar-project.github.io/documentation/>
+
+    - <https://opus.nlpl.eu/>
+
+    - <https://huggingface.co/datasets/xnli>
+
+    - <https://huggingface.co/datasets/xquad>
+
+    - <https://huggingface.co/docs/datasets/>'
+  math_stats: '- Subword segmentation effects across languages; type-token growth;
+    OOV handling.
+
+    - Cross-lingual evaluation design: macro-averaging across languages; stratified
+    sampling.'
+  number: 39
+  phase: NLP & GenAI
+  project:
+    title: Multilingual Text Classifier or QA
+    dataset: XNLI (NLI task) or XQuAD (QA translations)
+    description: Evaluate multilingual transfer with XLM-R (or similar). Train on
+      English, test on two non-English languages; report per-language results and
+      tokenisation diagnostics.
+    dataset_links: '- <https://huggingface.co/datasets/xnli>
+
+      - <https://huggingface.co/datasets/xquad>'
+    metrics: '- XNLI: accuracy ≥ 75% on at least two languages; XQuAD: F1 and EM comparable
+      to English baseline minus ≤ 10 points
+
+      - Tokenisation OOV rate and subword length statistics reported'
+    nuances: '- Script and whitespace differences (e.g., Thai); right-to-left rendering;
+      normalisation before hashing.'
+  summary: You will operationalise multilingual modelling, with concrete data wrangling
+    and fair evaluation across languages, not just English-only anecdotes.
+  title: 'Multilingual & Domain Adaptation: Corpora, Tokenisation, and X-Transfer'
+  bundles:
+  - bundle_nlp_foundations
+'4':
+  bibliography: '- *All of Statistics* — Wasserman — (2004) — <https://www.stat.cmu.edu/~larry/all-of-statistics/>
+
+    - *Stat 110: Confidence intervals & hypothesis testing lectures* — Blitzstein
+    — (2016) — <https://projects.iq.harvard.edu/stat110/home>'
+  code_focus: '- Confidence intervals via bootstrap (percentile, BCa) for means, medians,
+    and model metrics; permutation tests for group differences.
+
+    - Power and sample-size sketches; practical p-value interpretation; multiple-testing
+    control when slicing cohorts.
+
+    - Implement a minimal A/B analysis toolkit: lift, pooled vs unpooled variance,
+    delta method approximation; visualise with uncertainty bands.'
+  docs: '- [SciPy Stats](https://docs.scipy.org/doc/scipy/reference/stats.html)
+
+    - [statsmodels user guide (Inference)](https://www.statsmodels.org/stable/user-guide.html)'
+  math_stats: '- Central Limit Theorem (operational view); sampling distributions;
+    properties of estimators (bias, variance, consistency).
+
+    - Randomisation inference logic for permutation tests.'
+  number: 4
+  phase: Foundations
+  project:
+    title: A/B Test Analyst
+    dataset: 'Kaggle: AB Test for an E-Commerce Website'
+    description: 'Analyse an A/B dataset: clean exposures/clicks/conversions, compute
+      uplift with CIs, perform a permutation test for the difference in conversion
+      rates, and provide a practical recommendation memo with a risk assessment.'
+    dataset_links: '- <https://www.kaggle.com/datasets/zhangluyuan/ab-test-for-an-e-commerce-website>'
+    metrics: '- Report absolute and relative lift with 95% CIs
+
+      - Permutation-test p-value with clear assumptions
+
+      - Readable figures: conversion bars with error bars; cumulative conversion over
+      time'
+    nuances: '- Check randomisation integrity (pre-experiment covariates balance)
+
+      - Segment by device/region but control FWER or FDR when scanning many segments'
+  summary: 'This week injects statistical muscle: you can now quantify uncertainty
+    and avoid false confidence. You build resampling tools that you will reuse in
+    model comparison, hyperparameter selection, and monitoring.'
+  title: Inference, Resampling, and A/B Testing
+  bundles:
+  - bundle_stats_inference
+'40':
+  bibliography: '- Mitchell et al., “Model Cards for Model Reporting,” 2019.
+
+    - Rothman, “Transformers for NLP” (Packt, 3e) — deployment and applications.'
+  code_focus: '- Choose one capstone: (A) RAG assistant with citations and guardrails;
+    (B) Multilingual NER (fine-tuned transformer) with spaCy wrapper.
+
+    - End-to-end: ingestion, indexing, retriever-reader, evaluation (RAGAS); or token
+    classification training and packaging.
+
+    - Serve with FastAPI; write a Model Card; add basic monitoring (request logs,
+    drift snapshot).'
+  docs: '- <https://docs.ragas.io/>
+
+    - <https://python.langchain.com/docs/get_started/introduction>
+
+    - <https://docs.llamaindex.ai/>
+
+    - <https://fastapi.tiangolo.com/>
+
+    - <https://spacy.io/usage>'
+  math_stats: '- RAG evaluation sampling design; confidence intervals for faithfulness
+    metrics.
+
+    - Sequence-labelling evaluation: macro vs micro F1; per-entity confusion.'
+  number: 40
+  phase: NLP & GenAI
+  project:
+    title: Deployed NLP Capstone
+    dataset: 'A: Wikipedia or your domain docs + custom QA; B: CoNLL-2003 or multilingual
+      variant'
+    description: Build a user-facing assistant (A) or a packaged NER model (B). Include
+      a README, Model Card, evaluation notebook, and a FastAPI app with one-click
+      run scripts.
+    dataset_links: '- <https://huggingface.co/datasets/wikipedia>
+
+      - <https://huggingface.co/datasets/squad>
+
+      - <https://huggingface.co/datasets/conll2003>'
+    metrics: '- A: RAGAS faithfulness ≥ 0.75; grounded citation rate ≥ 95%
+
+      - B: entity-F1 ≥ 0.88 English and ≥ 0.80 on one non-English language
+
+      - Service p95 latency targets met; ≥ 90% test coverage on utility modules'
+    nuances: '- Dataset licences and attribution; privacy in logs; prompt injection
+      defences for RAG.'
+  summary: 'This capstone demonstrates a production-level NLP system: defensible evaluation,
+    documentation, and an API. The artefacts are portfolio-ready and auditable.'
+  title: 'Phase-E Project: RAG Assistant or Multilingual NER at Production Quality'
+  bundles:
+  - bundle_capstone_core
+'5':
+  bibliography: '- *ISLR (Python), Ch. 3 & 6* — James et al. — (2023) — <https://www.statlearning.com/>
+
+    - *Elements of Statistical Learning, Ch. 3* — Hastie et al. — (2009) — <https://hastie.su.domains/ElemStatLearn/>'
+  code_focus: '- OLS baseline; Ridge, Lasso, Elastic Net with *_CV; standardise features;
+    inspect coefficient stability under resampling.
+
+    - Plot regularisation paths; compare validation curves; nested CV vs single CV
+    for fair model selection.
+
+    - Add polynomial/features interactions via PolynomialFeatures or patsy-style design;
+    caution about multicollinearity.'
+  docs: '- [sklearn Ridge](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html)
+
+    - [sklearn Lasso](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html)
+
+    - [sklearn ElasticNet](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html)
+
+    - [sklearn: PolynomialFeatures](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html)
+
+    - [California housing dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html)'
+  math_stats: '- Derive normal equations x̂ = (XᵀX)⁻¹Xᵀy (geometric view: projection).
+
+    - Bias–variance trade-off under L2; sparsity intuition for L1; Elastic Net as
+    compromise.
+
+    - Condition number and ill-conditioning; role of standardisation.'
+  number: 5
+  phase: Supervised (Tabular)
+  project:
+    title: Regularised Regression on Housing
+    dataset: California Housing (sklearn)
+    description: Train OLS, Ridge, Lasso, Elastic Net on California Housing with a
+      robust preprocessing Pipeline. Produce coefficient-path plots, validation curves,
+      and a stability selection summary across resamples.
+    dataset_links: '- <https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html>'
+    metrics: '- Hold-out RMSE/MAE
+
+      - Coefficient stability summary
+
+      - Learning and validation curves'
+    nuances: '- Compare raw vs log-target (TransformedTargetRegressor)
+
+      - Discuss interpretability vs performance trade-offs'
+  summary: You make linear models do real work. The point is not just to fit but to
+    reason about stability and generalisation. You should end the week with judgement
+    about when ‘linear with features’ is enough.
+  title: Least Squares, Regularisation Paths, and Baselines
+  bundles:
+  - bundle_regularisation
+'6':
+  bibliography: '- *NumPy Docstring Guide* — numpydoc — (2024) — <https://numpydoc.readthedocs.io/en/latest/format.html>
+
+    - *MLflow Tracking Quickstart* — MLflow — (2025) — <https://mlflow.org/docs/latest/ml/tracking/quickstart/>
+
+    - *Keep a Changelog* — keepachangelog.com — (2019) — <https://keepachangelog.com/en/1.1.0/>'
+  code_focus: '- pytest: parametrised tests for data transforms and metrics; fixtures
+    for small toy frames; coverage reports.
+
+    - Docstring standards (NumPy style) and minimal API docs; README checklists; CHANGELOG
+    and semantic versioning.
+
+    - MLflow for experiment tracking: parameters, metrics, artifacts; compare runs;
+    record preprocessing and model versions.'
+  docs: '- [pytest parametrisation](https://docs.pytest.org/en/stable/how-to/parametrize.html)
+
+    - [coverage.py (devguide pointer)](https://devguide.python.org/testing/coverage/)
+
+    - [MLflow Tracking](https://www.mlflow.org/docs/latest/ml/tracking)'
+  math_stats: '- Consolidation of Weeks 1–5: variance of CV estimates; simple power
+    calculations to decide fold counts; when to use repeated CV.
+
+    - No new theory—focus on rigour and reproducibility.'
+  number: 6
+  phase: Foundations
+  project:
+    title: Experiment-Ready Baselines
+    dataset: California Housing, Titanic
+    description: Refactor Week 5 housing and Week 1 Titanic code into modules with
+      tests. Add MLflow logging (params, metrics, figures) and produce an experiments
+      README summarising what each run tested.
+    dataset_links: '- <https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html>
+
+      - <https://www.kaggle.com/c/titanic>'
+    metrics: '- >=85% test coverage on custom code
+
+      - Passing CI locally (pre-commit)
+
+      - MLflow runs reproducible by another machine'
+    nuances: '- Treat figures as artifacts; store environment (pip freeze) with runs
+
+      - Keep selective tests fast with parametrisation'
+  summary: You turn prototypes into reliable artefacts. Tests guard against silent
+    regressions; MLflow preserves context so results are trustable. This is what separates
+    hobby projects from professional work.
+  title: 'Engineering Habits: Testing, Docs, and Experiment Tracking'
+  bundles:
+  - bundle_mlops_hygiene
+'7':
+  bibliography: '- *Python packaging 101 (pyOpenSci)* — pyOpenSci — (2024) — <https://www.pyopensci.org/python-package-guide/tutorials/intro.html>
+
+    - *Semantic Versioning 2.0.0* — semver.org — (2013) — <https://semver.org/spec/v2.0.0.html>
+
+    - *docstr-coverage (measure docstring coverage)* — PyPI — (2024) — <https://pypi.org/project/docstr-coverage/>'
+  code_focus: '- Refactor common transformers into a reusable package: e.g., DatePartExtractor,
+    RareCategoryGrouper, OutlierClipper, Winsoriser, TargetEncoder wrapper (sklearn-compatible).
+
+    - Visualisation utilities (Matplotlib OO + seaborn): make reusable functions for
+    histogram/ECDF, violin+swarm, correlation heatmap, calibration curves, learning/validation
+    curves, residual plots. Each function returns axes objects and accepts styling
+    kwargs.
+
+    - Packaging: create a src/ package layout with pyproject.toml (setuptools), include
+    tests, type hints, and docstrings; build wheel locally; install in editable mode.
+    Pre-commit hooks enforce black/ruff/isort and docstring checks; measure docstring
+    coverage.'
+  docs: '- [setuptools + pyproject config](https://setuptools.pypa.io/en/stable/userguide/pyproject_config.html)
+
+    - [coverage.py (devguide pointer)](https://devguide.python.org/testing/coverage/)
+
+    - [Matplotlib gallery](https://matplotlib.org/stable/gallery/index.html)
+
+    - [seaborn tutorial](https://seaborn.pydata.org/tutorial.html)'
+  math_stats: '- Review Weeks 1–6 identities and pitfalls: (i) leakage via fit outside
+    CV; (ii) overfitting visual EDA; (iii) imbalance-induced misleading accuracy;
+    (iv) variance of CV estimates; (v) when robust statistics beat means.
+
+    - Practical review method: write short ‘bug stories’ reproducing each pitfall
+    and the fix.'
+  number: 7
+  phase: Foundations
+  project:
+    title: Utilities Package
+    dataset: California Housing, Adult (for quick visual tests)
+    description: Create a small Python package (src/yourutils/) with sklearn-compatible
+      transformers and plotting utilities. Include doctests and pytest suites. Publish
+      a local wheel and install via pip. Provide a README with usage snippets and
+      a CHANGELOG using Keep a Changelog conventions.
+    dataset_links: '- <https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html>
+
+      - <https://archive.ics.uci.edu/dataset/2/adult>'
+    metrics: '- >=85% line coverage on package code
+
+      - Docstring coverage reported
+
+      - Example notebook demonstrating each utility'
+    nuances: '- Use semantic versioning (0.y.z while unstable)
+
+      - Keep plotting functions pure: accept axes, return axes; no global state'
+  summary: 'This breathing week reduces duplication by giving you a personal toolbox:
+    composable transformers and plotting helpers you will drop into every project.
+    You also rehearse packaging and documentation, which accelerates all future work.'
+  title: Buffer & Utilities
+  bundles:
+  - bundle_foundations
+'8':
+  bibliography: '- *Great Expectations docs (concepts)* — GE — (2025) — <https://docs.greatexpectations.io/>
+
+    - *Pandera documentation* — Pandera — (2025) — <https://pandera.readthedocs.io/>'
+  code_focus: '- Great Expectations or Pandera for data contracts: define expectations/schemas;
+    validate raw vs post-transform frames; build a quick ‘data docs’ site (if using
+    GE).
+
+    - Drift checks in notebooks: population stability index (PSI) sketches; distribution
+    comparisons (KS/AD tests) for train–test splits.
+
+    - Refactor Week 1–5 notebooks to assert data contracts before model fitting.'
+  docs: '- [Great Expectations](https://docs.greatexpectations.io/)
+
+    - [Pandera](https://pandera.readthedocs.io/)'
+  math_stats: '- Two-sample tests (KS, AD) and effect sizes; interpreting practical
+    vs statistical significance in large n.
+
+    - Basics of monitoring metrics vs model metrics; separation of concerns.'
+  number: 8
+  phase: Foundations
+  project:
+    title: Contracts Before Models
+    dataset: Ames Housing, Titanic
+    description: 'Add data validation to previous pipelines: define expectations/schemas
+      for raw and post-processed frames. Fail fast if contracts break; show a small
+      drift report between train and test splits.'
+    dataset_links: '- <https://www.kaggle.com/c/house-prices-advanced-regression-techniques>
+
+      - <https://www.kaggle.com/c/titanic>'
+    metrics: '- Automated validation passes in CI-like run
+
+      - Readable data-docs (if GE)
+
+      - Clear remediation steps for violated expectations'
+    nuances: '- Be conservative in early contracts; tighten over time
+
+      - Document why certain checks are excluded to avoid brittleness'
+  summary: You formalise what ‘good data’ means for your projects. By encoding assumptions
+    as checks, you prevent subtle distribution issues from silently corrupting training
+    or evaluation.
+  title: Data Validation and Monitoring on Notebooks
+  bundles:
+  - bundle_fairness_calibration
+'9':
+  bibliography: '- *ISLR (Python), Ch. 4* — James et al. — (2023) — <https://www.statlearning.com/>
+
+    - *Model Cards for Model Reporting* — Mitchell et al. — (2019) — <https://arxiv.org/abs/1810.03993>'
+  code_focus: '- LogisticRegression (liblinear/saga solvers); feature scaling and
+    regularisation; interpret coefficients and odds ratios.
+
+    - Imbalance handling: class weights vs resampling (SMOTE/SMOTENC) with imbalanced-learn;
+    stratified CV; threshold tuning for business metrics.
+
+    - Probability calibration: reliability diagrams, CalibratedClassifierCV (sigmoid
+    vs isotonic), CalibrationDisplay; integrate into Pipeline.
+
+    - Fairness quick pass: basic group metrics (demographic parity difference, equal
+    opportunity) using fairlearn; caveats on causal interpretation.'
+  docs: '- [sklearn LogisticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
+
+    - [sklearn Calibration (User Guide)](https://scikit-learn.org/stable/modules/calibration.html)
+
+    - [CalibratedClassifierCV](https://scikit-learn.org/stable/modules/generated/sklearn.calibration.CalibratedClassifierCV.html)
+
+    - [calibration_curve](https://scikit-learn.org/stable/modules/generated/sklearn.calibration.calibration_curve.html)
+
+    - [imbalanced-learn SMOTE](https://imbalanced-learn.org/stable/over_sampling.html)
+
+    - [fairlearn quickstart](https://fairlearn.org/main/about/quickstart.html)'
+  math_stats: '- Log-likelihood for Bernoulli GLM; link functions; proper scoring
+    rules (log loss, Brier).
+
+    - Calibration vs discrimination; why AUC can be high but calibration poor.'
+  number: 9
+  phase: Supervised (Tabular)
+  project:
+    title: 'Credit Risk: Calibrated Classifier'
+    dataset: Kaggle Give Me Some Credit, Home Credit Default Risk (optional larger)
+    description: Build a logistic baseline with robust preprocessing; address imbalance
+      with class_weight vs SMOTE; evaluate ROC AUC, PR AUC, and calibration. Produce
+      a reliability diagram and apply isotonic/sigmoid calibration; report threshold
+      choices tied to business costs. Include a one-page model card with fairness
+      slice metrics.
+    dataset_links: '- <https://www.kaggle.com/c/3136>
+
+      - <https://www.kaggle.com/competitions/home-credit-default-risk>'
+    metrics: '- ROC AUC and PR AUC on hold-out
+
+      - Calibration (Brier score) improved after calibration
+
+      - Fairness slice table computed and discussed'
+    nuances: '- Do not leak resampling across folds; use Pipeline
+
+      - Document how thresholds map to false positive costs'
+  summary: This is the first serious classifier you could ship. You learn to manage
+    imbalance, scrutinise probabilities, and tie thresholds to costs. A simple logistic
+    model—with care—beats many naive complex models.
+  title: 'Classification Essentials: Logistic Regression, Imbalance, Calibration'
+  bundles:
+  - bundle_calibration
+  - bundle_metrics
