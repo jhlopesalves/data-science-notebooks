@@ -18,3 +18,34 @@ extend-exclude = '''
   | dist
 )/
 '''
+
+[tool.ruff]
+# Use tabs instead of spaces for indentation
+indent-width = 4
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.format]
+# Use tabs for indentation
+indent-style = "tab"
+quote-style = "double"
+line-ending = "auto"
+
+[tool.ruff.lint]
+# Enable common Python linting rules
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (import sorting)
+]
+# Ignore W191 (indentation contains tabs) since we're using tabs intentionally
+ignore = [
+    "W191",  # indentation contains tabs
+    "E101",  # indentation contains mixed spaces and tabs
+]
+
+[tool.ruff.lint.isort]
+# Configure import sorting
+combine-as-imports = true
+force-wrap-aliases = true

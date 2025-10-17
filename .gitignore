@@ -163,6 +163,7 @@ po/*~
 # VS Code
 .vscode/
 *.code-workspace
+.editorconfig
 
 # Sublime Text
 *.sublime-project

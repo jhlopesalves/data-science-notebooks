@@ -1,0 +1,10 @@
+.DS_Store
+.vscode/
+chapter*/swimdata
+chapter*/webapp/.ipynb_checkpoints/
+chapter*/webapp/swimdata
+chapter*/webapp/__pycache__/
+chapter*/webapp/templates/*-*
+__pycache__/
+charts/
+test.txt

@@ -87,3 +87,7 @@ def k_report(X_std, k, seed=42, true_labels=None):
         report["NMI"] = normalized_mutual_info_score(true_labels, labels)  # ↑ better
 
     return report
+
+
+if __name__ == "__main__":
+    print("Clustering Reports Helpers")

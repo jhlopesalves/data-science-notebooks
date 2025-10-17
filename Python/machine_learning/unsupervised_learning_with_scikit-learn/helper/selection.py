@@ -189,3 +189,7 @@ def recommend_k(df: pd.DataFrame, sil_margin: float = 0.03) -> Dict[str, int]:
         admissible = np.array([k_silmax])
     k_final = int(sorted(admissible, key=lambda k: (abs(k - k_knee), k))[0])
     return {"knee": k_knee, "silhouette_max": k_silmax, "final": k_final}
+
+
+if __name__ == "__main__":
+    print("Clustering Selection Helpers")
