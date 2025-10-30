@@ -43,6 +43,7 @@ select = [
 ignore = [
     "W191",  # indentation contains tabs
     "E101",  # indentation contains mixed spaces and tabs
+    "W391",  # too many blank lines at end of file/cell
 ]
 
 [tool.ruff.lint.isort]
