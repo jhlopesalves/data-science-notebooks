@@ -174,7 +174,7 @@ class OlistAnalyzer:
 
 		return data_map
 
-	def build_master_table(self, data_dict: dict) -> pd.DataFrame:
+	def build_master_table(self) -> pd.DataFrame:
 		"""
 		Create a master table by merging multiple DataFrames.
 
@@ -199,59 +199,57 @@ class OlistAnalyzer:
 		required_keys = [
 			"orders",
 			"order_items",
+			"order_payments",
 			"products",
 			"customers",
-			"order_payments",
 			"product_category_name_translation",
 		]
-
-		# Check if all required DataFrames are present
-		missing_keys = [key for key in required_keys if key not in data_dict]
+		missing_keys = [key for key in required_keys if key not in self.data_dict]
 		if missing_keys:
 			raise KeyError(f"Missing required DataFrames in data_dict: {missing_keys}")
 
-		# Check if DataFrames are not empty
-		for key in required_keys:
-			if data_dict[key].empty:
-				raise ValueError(f"DataFrame '{key}' is empty")
+		orders = self.data_dict["orders"].copy()
+		items = self.data_dict["order_items"].copy()
+		payments = self.data_dict["order_payments"].copy()
+		products = self.data_dict["products"].copy()
+		customers = self.data_dict["customers"].copy()
+		translation = self.data_dict["product_category_name_translation"].copy()
 
-		# 1. Start with the 'orders' dataframe
-		merged_df = data_dict["orders"].copy()
+		orders_delivered = orders[orders["order_status"] == "delivered"].copy()
 
-		# Filter for orders with status 'delivered'
-		merged_df = merged_df[merged_df["order_status"] == "delivered"].copy()
-
-		# 2. Merge with 'order_items' on 'order_id'
-		merged_df = pd.merge(
-			merged_df, data_dict["order_items"], on="order_id", how="left"
+		items_products = items.merge(products, on="product_id", how="left")
+		items_products = items_products.merge(
+			translation, on="product_category_name", how="left"
 		)
 
-		# 3. Merge with 'products' on 'product_id'
-		merged_df = pd.merge(
-			merged_df, data_dict["products"], on="product_id", how="left"
+		order_items_agg = (
+			items_products.groupby("order_id")
+			.agg(
+				total_price=("price", "sum"),
+				total_freight=("freight_value", "sum"),
+				total_items=("order_item_id", "count"),
+				category_english=("product_category_name_english", "first"),
+			)
+			.reset_index()
 		)
 
-		# 4. Merge with 'customers' on 'customer_id'
-		merged_df = pd.merge(
-			merged_df, data_dict["customers"], on="customer_id", how="left"
+		order_payments_agg = (
+			payments.groupby("order_id")
+			.agg(
+				total_payment=("payment_value", "sum"),
+				payment_installments=("payment_installments", "max"),
+			)
+			.reset_index()
 		)
 
-		# 5. Merge with 'order_payments' on 'order_id'
-		merged_df = pd.merge(
-			merged_df, data_dict["order_payments"], on="order_id", how="left"
-		)
+		merged_df = orders_delivered.merge(order_items_agg, on="order_id", how="left")
+		merged_df = merged_df.merge(order_payments_agg, on="order_id", how="left")
+		merged_df = merged_df.merge(customers, on="customer_id", how="left")
 
-		# 6. Merge with 'product_category_name_translation' on 'product_category_name'
-		merged_df = pd.merge(
-			merged_df,
-			data_dict["product_category_name_translation"],
-			on="product_category_name",
-			how="left",
-		)
-
+		self.master_df = merged_df
 		return merged_df
 
-	def build_customer_summary(self, master_df: pd.DataFrame) -> pd.DataFrame:
+	def build_customer_summary(self) -> pd.DataFrame:
 		"""
 		Build customer summary with aggregated metrics.
 
@@ -265,16 +263,20 @@ class OlistAnalyzer:
 		ValueError
 		    If master_df has not been built yet.
 		"""
+		if self.master_df is None:
+			raise ValueError(
+				"Master table has not been built yet. Call build_master_table() first."
+			)
 
 		# Ensure order_purchase_timestamp is datetime for proper min/max
-		master_df["order_purchase_timestamp"] = pd.to_datetime(
-			master_df["order_purchase_timestamp"]
+		self.master_df["order_purchase_timestamp"] = pd.to_datetime(
+			self.master_df["order_purchase_timestamp"]
 		)
 
 		# Group by customer_unique_id and aggregate
-		customer_summary = master_df.groupby("customer_unique_id").agg({
-			"price": "sum",
-			"freight_value": "sum",
+		customer_summary = self.master_df.groupby("customer_unique_id").agg({
+			"total_price": "sum",
+			"total_freight": "sum",
 			"order_id": "nunique",
 			"order_purchase_timestamp": ["min", "max"],
 		})
@@ -288,6 +290,8 @@ class OlistAnalyzer:
 			"last_order_date",
 		]
 
+		# Store the customer_summary_df in the instance
+		self.customer_summary_df = customer_summary
 		return customer_summary
 
 	def get_sales_pivot(self, time_period: str = "year") -> pd.DataFrame:
@@ -327,8 +331,8 @@ class OlistAnalyzer:
 			df["period"] = df["order_purchase_timestamp"].dt.to_period("M")
 
 		pivot = df.pivot_table(
-			values="price",
-			index="product_category_name_english",
+			values="total_price",
+			index="category_english",
 			columns="period",
 			aggfunc="sum",
 			fill_value=0,
@@ -359,7 +363,7 @@ class OlistAnalyzer:
 			raise ValueError("Master table has not been built yet.")
 
 		category_revenue = (
-			self.master_df.groupby("product_category_name_english")["price"]
+			self.master_df.groupby("category_english")["total_price"]
 			.sum()
 			.sort_values(ascending=False)
 			.head(n)
