@@ -1,0 +1,14 @@
+[flake8]
+# Ignore E501: line too long, W191: indentation contains tabs
+extend-ignore = E501, W191
+max-line-length = 88
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    datacamp,
+    .eggs,
+    *.egg,
+    build,
+    dist
