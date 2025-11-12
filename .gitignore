@@ -3,7 +3,6 @@
 # =======================
 
 # Python virtual environments
-datacamp/
 venv/
 env/
 ENV/

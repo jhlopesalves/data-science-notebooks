@@ -1,5 +1,0 @@
-Refactored js/main.js to load Markdown weeks via index.yaml.
-Implemented fetching + caching with marked frontmatter parsing using js-yaml.
-Sidebar navigation retains hash routing and mobile toggle support.
-Objective/Description/Resources cards rebuilt from frontmatter + markdown sections.
-Removed gray-matter dependency; frontmatter parsed with js-yaml.
