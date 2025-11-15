@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def missing_data_summary(df: pd.DataFrame) -> pd.DataFrame:
+def missing_report(df: pd.DataFrame) -> pd.DataFrame:
 	"""
 	Return a comprehensive summary of missing data patterns for columns with missing values.
 
@@ -52,7 +52,7 @@ def missing_data_summary(df: pd.DataFrame) -> pd.DataFrame:
 
 	Notes
 	-----
-	- Missing values are identified using pandas' `isnull()` method
+	- Missing values are identified using pandas' `isna()` method
 	- Percentage calculation uses total row count as denominator
 	- Results are sorted to help prioritize data cleaning efforts
 	- Only columns with missing values are included in the summary
@@ -61,36 +61,25 @@ def missing_data_summary(df: pd.DataFrame) -> pd.DataFrame:
 	# Total number of rows
 	total_rows = len(df)
 
-	# Calculate missing count per column
-	missing_count = df.isnull().sum()
+	# Vectorized missing counts for every column
+	missing_count = df.isna().sum()
 
-	# Filter columns that have missing values
-	columns_with_missing = missing_count[missing_count > 0].index
+	# Keep only columns that actually contain missing values
+	missing_count = missing_count[missing_count.gt(0)]
 
 	# If no columns have missing values, return empty DataFrame with correct structure
-	if len(columns_with_missing) == 0:
+	if missing_count.empty:
 		return pd.DataFrame(
 			columns=["Data Type", "Missing Count", "Missing %", "Non-Missing Count"]
 		)
 
-	# Calculate percentage of missing values for columns with missing data
-	missing_percentage = (missing_count[columns_with_missing] / total_rows) * 100
-
-	# Count non-missing values for columns with missing data
-	non_missing_count = total_rows - missing_count[columns_with_missing]
-
-	# Data types for columns with missing data
-	column_dtypes = df[columns_with_missing].dtypes
-
-	# Combine everything into a single summary table
+	# Build the summary using aligned Series to avoid copying column data
 	summary = pd.DataFrame({
-		"Data Type": column_dtypes,
-		"Missing Count": missing_count[columns_with_missing],
-		"Missing %": missing_percentage.round(2),
-		"Non-Missing Count": non_missing_count,
+		"Data Type": df.dtypes.reindex(missing_count.index),
+		"Missing Count": missing_count,
 	})
+	summary["Missing %"] = (summary["Missing Count"] / total_rows * 100).round(2)
+	summary["Non-Missing Count"] = total_rows - summary["Missing Count"]
 
 	# Sort descending by missing percentage
-	summary = summary.sort_values(by="Missing %", ascending=False)
-
-	return summary
+	return summary.sort_values(by="Missing %", ascending=False)
