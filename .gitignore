@@ -14,7 +14,8 @@ ENV/
 pyvenv.cfg
 pip-selfcheck.json
 .flake8
-
+.flake8
+pyproject.toml
 # Python bytecode
 __pycache__/
 *.py[cod]
