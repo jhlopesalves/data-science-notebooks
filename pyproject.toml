@@ -19,16 +19,16 @@ extend-exclude = '''
 '''
 
 [tool.ruff]
-# Use tabs instead of spaces for indentation
+# Use spaces for indentation (matching VS Code settings)
 indent-width = 4
 line-length = 88
-target-version = "py312"
+target-version = "py311"
 
 [tool.ruff.format]
-# Use tabs for indentation
-indent-style = "tab"
+# Use spaces for indentation (matching VS Code settings)
+indent-style = "space"
 quote-style = "double"
-line-ending = "auto"
+line-ending = "lf"
 
 [tool.ruff.lint]
 # Enable common Python linting rules
@@ -38,12 +38,18 @@ select = [
     "F",   # pyflakes
     "I",   # isort (import sorting)
 ]
-# Ignore W191 (indentation contains tabs) since we're using tabs intentionally
+# Whitespace warnings stay ignored; Ruff formatter normalizes to spaces on save
 ignore = [
     "W191",  # indentation contains tabs
     "E101",  # indentation contains mixed spaces and tabs
+    "E111",  # indentation is not a multiple of four
+    "E114",  # indentation is not a multiple of four (comment)
+    "E117",  # over-indented
+    "W293",  # blank line contains whitespace
+    "W291",  # trailing whitespace
     "W391",  # too many blank lines at end of file/cell
     "E501",  # line too long
+    "E502",  # backslash in the middle of nowhere
 ]
 
 [tool.ruff.lint.isort]
