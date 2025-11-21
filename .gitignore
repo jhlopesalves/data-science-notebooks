@@ -15,6 +15,7 @@ pyvenv.cfg
 pip-selfcheck.json
 .flake8
 .flake8
+.toml
 pyproject.toml
 # Python bytecode
 __pycache__/
