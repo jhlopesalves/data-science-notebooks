@@ -10,6 +10,14 @@ ENV/
 .env/
 .conda/
 
+# Local vector DB / indexes
+**/chroma.sqlite3
+**/chroma.sqlite3-*
+**/chroma_books/
+**/.chroma/
+**/chroma_db/
+
+
 # Python environment configuration
 pyvenv.cfg
 pip-selfcheck.json
