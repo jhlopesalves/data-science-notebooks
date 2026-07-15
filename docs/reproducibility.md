@@ -108,7 +108,7 @@ course conventions.
 | archive/study_sessions/data_reboot_airbnb_prices/airbnb.ipynb | requires nbresult and external challenge conventions | Tests/result cells are not portable without the original environment |
 | Python/visualisation/seaborn/intro_to_seaborn/introduction_to_seaborn.ipynb | air_quality_no2_long.csv URL returned 404 on 2026-07-15 and no local copy exists | The related lesson cell cannot run unchanged |
 | Python/visualisation/seaborn/intermediate/intermediate_seaborn.ipynb | contains example filenames such as wines.csv and data.csv not supplied locally | Some examples are illustrative or require external setup |
-| Python/projects/bike_sharing/bike.ipynb | retained source includes a feature-shape mismatch that previously produced an error | Full sequential execution needs analytical review, not an automatic fix |
+| Python/projects/bike_sharing/bike.ipynb | retained source includes an unfinished `y_train_temp` assignment and a feature-shape mismatch that previously produced an error | Full sequential execution needs analytical review, not an automatic fix |
 | Python/machine_learning/supervised_learning/decision_trees/module_3/exercises_3-0.ipynb | previous run was interrupted | Runtime/cost and completion are uncertain |
 | Python/projects/heart_disease/heart_disease.ipynb | only three code cells and no narrative; dynamically fetches a helper | Runnable pieces may work, but the project is incomplete |
 
