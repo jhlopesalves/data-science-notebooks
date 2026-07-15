@@ -339,7 +339,6 @@ def _annotate_bars(
 		return f"{height:.1f}"
 
 	# Estimate if we need extra headroom to avoid clipping labels
-	pad_needed = False
 	max_coord = -math.inf
 	for idx, bar in enumerate(patches):
 		if scope == "last" and idx != len(patches) - 1:
@@ -354,12 +353,10 @@ def _annotate_bars(
 	if vertical:
 		top = ax.get_ylim()[1]
 		if max_coord + pad > top:
-			pad_needed = True
 			ax.set_ylim(ax.get_ylim()[0], max_coord + pad)
 	else:
 		right = ax.get_xlim()[1]
 		if max_coord + pad > right:
-			pad_needed = True
 			ax.set_xlim(ax.get_xlim()[0], max_coord + pad)
 
 	# Place labels
