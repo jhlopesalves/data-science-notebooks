@@ -27,7 +27,7 @@ status is uncertain.
 | [Statistics](Python/statistics/) | EDA, experimental design, inference, regression and sampling |
 | [Visualisation](Python/visualisation/) | Matplotlib and Seaborn notes and exercises |
 | [Helpers](Python/helpers/) | Reusable statistical, encoding and plotting utilities |
-| [Study sessions](Python/projects/study_sessions/) | Worksheets, refreshers and scratch practice retained for historical context |
+| [Archive](archive/) | Study sessions, worksheets, refreshers and scratch practice retained for historical context |
 | [Repository documentation](docs/) | Audit, provenance, reproducibility, review decisions and curation results |
 
 The [content index](docs/content_index.md) is the main entry point. It gives
@@ -44,7 +44,7 @@ archive:
 | --- | --- | --- |
 | [Ames Housing](Python/projects/ames_house/ames_house.ipynb) | Regression and model comparison using the Ames housing dataset | Substantial; saved model is regenerable |
 | [Online Retail II](Python/projects/online_retail_ii/online_retail_ii.ipynb) | Customer-level feature construction and clustering | Substantial; large local workbook required |
-| [Telco Customer Churn](Python/projects/telcom_customer_churn/telcom_customer_churn.ipynb) | Churn classification and model comparison | Substantial; provenance still needs review |
+| [Telco Customer Churn](Python/projects/telco_customer_churn/telco_customer_churn.ipynb) | Churn classification and model comparison | Substantial; provenance still needs review |
 | [Vehicle Price Modelling](Python/projects/vehicles/vehicles.ipynb) | Used-vehicle price modelling with structured and text features | Substantial; Kaggle dataset |
 | [Spotify Songs](Python/projects/spotify/spotify_dataset.ipynb) | Exploratory modelling with a TidyTuesday dataset | Substantial but mixed with study notes |
 
